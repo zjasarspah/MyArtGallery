@@ -11,7 +11,6 @@ public class Artist {
 
     private int id;
     private String name;
-    private String movement;
     private String nationality;
 
     public int getId() {
@@ -30,14 +29,6 @@ public class Artist {
         this.name = name;
     }
 
-    public String getMovement() {
-        return movement;
-    }
-
-    public void setMovement(String movement) {
-        this.movement = movement;
-    }
-
     public String getNationality() {
         return nationality;
     }
@@ -51,7 +42,6 @@ public class Artist {
         return "Artist{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", movement='" + movement + '\'' +
                 ", nationality='" + nationality + '\'' +
                 '}';
     }
@@ -61,11 +51,11 @@ public class Artist {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Artist artist = (Artist) o;
-        return id == artist.id && Objects.equals(name, artist.name) && Objects.equals(movement, artist.movement) && Objects.equals(nationality, artist.nationality);
+        return id == artist.id && Objects.equals(name, artist.name) && Objects.equals(nationality, artist.nationality);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, movement, nationality);
+        return Objects.hash(id, name,  nationality);
     }
 }
