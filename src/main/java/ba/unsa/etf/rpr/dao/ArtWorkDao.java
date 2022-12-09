@@ -18,7 +18,7 @@ public interface ArtWorkDao extends Dao<ArtWork> {
      * @param price search price
      * @return list of artworks
      */
-    public List<ArtWork> searchByPrice (double price);
+    public List<ArtWork> searchByPrice (int price);
 
     /**
      * Returns all artworks that belong to given art style
