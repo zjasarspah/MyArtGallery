@@ -13,7 +13,7 @@ public class ArtWork {
     private ArtStyle movement;
     private Artist artist;
     private String name;
-    private double price;
+    private int price;
 
     public int getId() {
         return id;
@@ -47,11 +47,11 @@ public class ArtWork {
         this.name = name;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
