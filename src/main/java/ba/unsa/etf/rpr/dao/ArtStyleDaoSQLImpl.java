@@ -21,7 +21,7 @@ public class ArtStyleDaoSQLImpl implements ArtStyleDao {
     @Override
     public ArtStyle getById(int id) {
 
-        String query = "SELECT * FROM categories WHERE id = ?";
+        String query = "SELECT * FROM ArtStyles WHERE id = ?";
 
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);
@@ -34,12 +34,12 @@ public class ArtStyleDaoSQLImpl implements ArtStyleDao {
                 artstyle.setName(rs.getString("name"));
                 rs.close();
                 return artstyle;
-            }else{
-                return null; // if there is no elements in the result set return null
             }
+
         }catch (SQLException e){
             e.printStackTrace(); // poor error handling
         }
+
         return null;
     }
 
@@ -47,41 +47,38 @@ public class ArtStyleDaoSQLImpl implements ArtStyleDao {
     @Override
     public ArtStyle add(ArtStyle item) {
 
-        String insert = "INSERT INTO categories(id, name) VALUES(?)";
+        String insert = "INSERT INTO ArtStyles(id, name) VALUES(?)";
 
         try {
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, item.getId());
             stmt.setString(2, item.getName());
             stmt.executeUpdate();
-            return item;
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return null;
+        return item;
     }
 
     @Override
     public ArtStyle update(ArtStyle item) {
-        String insert = "UPDATE categories SET name = ? WHERE id = ?";
+        String insert = "UPDATE ArtStyles SET name = ? WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, item.getName());
             stmt.setObject(2, item.getId());
             stmt.executeUpdate();
-            return item;
         }catch (SQLException e){
             e.printStackTrace();
         }
 
-        return null;
+        return item;
     }
 
     @Override
     public void delete(int id) {
-        String insert = "DELETE FROM categories WHERE id = ?";
+        String insert = "DELETE FROM ArtStyles WHERE id = ?";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setObject(1, id);
@@ -89,22 +86,22 @@ public class ArtStyleDaoSQLImpl implements ArtStyleDao {
         }catch (SQLException e){
             e.printStackTrace();
         }
-
     }
 
     @Override
     public List<ArtStyle> getAll() {
-        String query = "SELECT * FROM categories";
+        String query = "SELECT * FROM ArtStyles";
         List<ArtStyle> artStyles = new ArrayList<>();
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                ArtStyle artStyle = new ArtStyle();
-                artStyle.setId(rs.getInt("id"));
-                artStyle.setName(rs.getString("name"));
-                artStyles.add(artStyle);
+            while (rs.next()) {
+                ArtStyle item = new ArtStyle();
+                item.setId(rs.getInt("id"));
+                item.setName(rs.getString("name"));
+                artStyles.add(item);
             }
+            rs.close();
         } catch (SQLException e) {
             e.printStackTrace(); // poor error handling
         }
