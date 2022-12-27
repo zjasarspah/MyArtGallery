@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Zerina Jasarspahic
  */
 
-public class Artist {
+public class Artist implements Idable{
 
     private int id;
     private String name;
