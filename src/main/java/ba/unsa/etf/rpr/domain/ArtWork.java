@@ -13,7 +13,6 @@ public class ArtWork {
     private ArtStyle movement;
     private Artist artist;
     private String name;
-    private int price;
 
     public int getId() {
         return id;
@@ -47,14 +46,6 @@ public class ArtWork {
         this.name = name;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     @Override
     public String toString() {
         return "ArtWork{" +
@@ -62,7 +53,6 @@ public class ArtWork {
                 ", movement=" + movement +
                 ", artist=" + artist +
                 ", name='" + name + '\'' +
-                ", price=" + price +
                 '}';
     }
 
@@ -71,11 +61,11 @@ public class ArtWork {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ArtWork artWork = (ArtWork) o;
-        return id == artWork.id && Double.compare(artWork.price, price) == 0 && Objects.equals(movement, artWork.movement) && Objects.equals(artist, artWork.artist) && Objects.equals(name, artWork.name);
+        return id == artWork.id &&  Objects.equals(movement, artWork.movement) && Objects.equals(artist, artWork.artist) && Objects.equals(name, artWork.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, movement, artist, name, price);
+        return Objects.hash(id, movement, artist, name);
     }
 }
