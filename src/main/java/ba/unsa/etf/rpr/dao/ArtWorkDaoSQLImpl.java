@@ -10,19 +10,22 @@ import java.util.List;
 
 public class ArtWorkDaoSQLImpl implements ArtWorkDao {
 
-    private Connection connection;
+    public static Connection connection;
 
     public ArtWorkDaoSQLImpl() {
         try {
-            this.connection = DriverManager.getConnection();
+            this.connection = DataBaseDao.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public static Connection returnConnection () {
+        return connection;
+    }
     @Override
     public List<ArtWork> searchByArtStyle(ArtStyle movement) {
-        String query = "SELECT * FROM ArtWorks WHERE artstyle_id = ?";
+        String query = "SELECT * FROM ArtWorks WHERE id_artstyle = ?";
         List<ArtWork> artWorks = new ArrayList<>();
 
         try {
@@ -62,26 +65,6 @@ public class ArtWorkDaoSQLImpl implements ArtWorkDao {
         return artWorks;
     }
 
-    @Override
-    public List<ArtWork> searchByPrice (int price) {
-        String query = "SELECT * FROM ArtWorks WHERE price < ?";
-        List<ArtWork> artWorks = new ArrayList<>();
-
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            stmt.setInt(1, price);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                artWorks.add((new ArtWorkDaoSQLImpl()).getById(rs.getInt("id")));
-            }
-            rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return artWorks;
-    }
 
     @Override
     public ArtWork getById(int id) {
@@ -95,9 +78,8 @@ public class ArtWorkDaoSQLImpl implements ArtWorkDao {
                 ArtWork item = new ArtWork();
                 item.setId(rs.getInt("id"));
                 item.setName(rs.getString("name"));
-                item.setPrice(rs.getInt("price"));
-                item.setMovement((new ArtStyleDaoSQLImpl()).getById(rs.getInt("artstyle_id")));
-                item.setArtist((new ArtistDaoSQLImpl()).getById(rs.getInt("artist_id")));
+                item.setMovement((new ArtStyleDaoSQLImpl()).getById(rs.getInt("id_artstyle")));
+                item.setArtist((new ArtistDaoSQLImpl()).getById(rs.getInt("id_artist")));
                 rs.close();
                 return item;
             }
@@ -110,17 +92,19 @@ public class ArtWorkDaoSQLImpl implements ArtWorkDao {
 
     @Override
     public ArtWork add(ArtWork item) {
-        String insert = "INSERT INTO ArtWorks(id, name, price, artist_id, artstyle_id) VALUES(?)";
+        String insert = "INSERT INTO ArtWorks(name, id_artist, id_artstyle) VALUES(?,?,?)";
 
         try {
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, item.getId());
-            stmt.setString(2, item.getName());
-            stmt.setInt(3, item.getPrice());
-            stmt.setInt(4, item.getArtist().getId());
-            stmt.setInt(5, item.getMovement().getId());
+            stmt.setString(1, item.getName());
+            stmt.setInt(2, item.getArtist().getId());
+            stmt.setInt(3, item.getMovement().getId());
             stmt.executeUpdate();
 
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            item.setId(rs.getInt(1));
+            return item;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -130,14 +114,14 @@ public class ArtWorkDaoSQLImpl implements ArtWorkDao {
 
     @Override
     public ArtWork update(ArtWork item) {
-        String insert = "UPDATE ArtWorks SET name = ?, price = ?, artist_id = ?, artstyle_id = ? WHERE id = ?";
+        String insert = "UPDATE ArtWorks SET name = ?, id_artist = ?, id_artstyle = ? WHERE id = ?";
         try {
-            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = this.connection.prepareStatement(insert);
             stmt.setString(1, item.getName());
-            stmt.setInt(2, item.getPrice());
-            stmt.setInt(3, item.getArtist().getId());
-            stmt.setInt(4, item.getMovement().getId());
-            stmt.setInt(5, item.getId());
+            stmt.setInt(2, item.getArtist().getId());
+            stmt.setInt(3, item.getMovement().getId());
+            stmt.setInt(4, item.getId());
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -149,7 +133,7 @@ public class ArtWorkDaoSQLImpl implements ArtWorkDao {
     public void delete(int id) {
         String insert = "DELETE FROM ArtWorks WHERE id = ?";
         try{
-            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = this.connection.prepareStatement(insert);
             stmt.setObject(1, id);
             stmt.executeUpdate();
         }catch (SQLException e){
@@ -169,9 +153,8 @@ public class ArtWorkDaoSQLImpl implements ArtWorkDao {
                 ArtWork item = new ArtWork();
                 item.setId(rs.getInt("id"));
                 item.setName(rs.getString("name"));
-                item.setPrice(rs.getInt("price"));
-                item.setMovement((new ArtStyleDaoSQLImpl()).getById(rs.getInt("artstyle_id")));
-                item.setArtist((new ArtistDaoSQLImpl()).getById(rs.getInt("artist_id")));
+                item.setMovement((new ArtStyleDaoSQLImpl()).getById(rs.getInt("id_artstyle")));
+                item.setArtist((new ArtistDaoSQLImpl()).getById(rs.getInt("id_artist")));
                 artWorks.add(item);
             }
             rs.close();
