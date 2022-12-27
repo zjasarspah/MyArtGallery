@@ -11,6 +11,7 @@ public class ArtStyle {
 
     private int id;
     private String name;
+    private String year;
 
     public int getId() {
         return id;
@@ -28,17 +29,17 @@ public class ArtStyle {
         this.name = name;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ArtStyle artStyle = (ArtStyle) o;
-        return id == artStyle.id && Objects.equals(name, artStyle.name);
+    public int hashCode() {
+        return Objects.hash(id, name, year);
     }
 
     @Override
@@ -46,6 +47,15 @@ public class ArtStyle {
         return "ArtStyle{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", year='" + year + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ArtStyle artStyle = (ArtStyle) o;
+        return id == artStyle.id && Objects.equals(name, artStyle.name) && Objects.equals(year, artStyle.year);
     }
 }
