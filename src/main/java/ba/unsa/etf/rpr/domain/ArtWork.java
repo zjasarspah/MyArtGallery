@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Zerina Jasarspahic
  */
 
-public class ArtWork {
+public class ArtWork implements Idable {
 
     private int id;
     private ArtStyle movement;
