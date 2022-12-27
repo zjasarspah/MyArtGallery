@@ -14,13 +14,6 @@ import java.util.List;
 public interface ArtWorkDao extends Dao<ArtWork> {
 
     /**
-     * Returns all artworks that have price lower than given price
-     * @param price search price
-     * @return list of artworks
-     */
-    public List<ArtWork> searchByPrice (int price);
-
-    /**
      * Returns all artworks that belong to given art style
      * @param movement search movement
      * @return list of artworks
