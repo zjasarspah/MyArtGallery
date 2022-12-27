@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Zerina Jasarspahic
  */
 
-public class ArtStyle {
+public class ArtStyle implements Idable{
 
     private int id;
     private String name;
