@@ -19,12 +19,4 @@ public interface ArtistDao extends Dao<Artist> {
 
     List<Artist> searchByArtStyle(ArtStyle movement);
 
-    /**
-     * Returns all artists that belong to given nationality
-     * @param nationality
-     * @return list of artists
-     */
-
-    List<Artist> searchByNationality(String nationality);
-
 }
