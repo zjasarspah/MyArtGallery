@@ -11,7 +11,7 @@ public class Artist {
 
     private int id;
     private String name;
-    private String nationality;
+    private String lifespan;
 
     public int getId() {
         return id;
@@ -29,21 +29,17 @@ public class Artist {
         this.name = name;
     }
 
-    public String getNationality() {
-        return nationality;
+    public String getLifespan() {
+        return lifespan;
     }
 
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
+    public void setLifespan(String lifespan) {
+        this.lifespan = lifespan;
     }
 
     @Override
     public String toString() {
-        return "Artist{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", nationality='" + nationality + '\'' +
-                '}';
+        return name;
     }
 
     @Override
@@ -51,11 +47,11 @@ public class Artist {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Artist artist = (Artist) o;
-        return id == artist.id && Objects.equals(name, artist.name) && Objects.equals(nationality, artist.nationality);
+        return id == artist.id && Objects.equals(name, artist.name) && Objects.equals(lifespan, artist.lifespan);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name,  nationality);
+        return Objects.hash(id, name,  lifespan);
     }
 }
