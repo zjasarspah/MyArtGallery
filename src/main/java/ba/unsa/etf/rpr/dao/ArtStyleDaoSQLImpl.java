@@ -1,120 +1,41 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.ArtStyle;
+import ba.unsa.etf.rpr.exceptions.ArtGalleryException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class ArtStyleDaoSQLImpl implements ArtStyleDao {
+public class ArtStyleDaoSQLImpl extends AbstractDao<ArtStyle> implements ArtStyleDao {
 
     private Connection connection;
 
     public ArtStyleDaoSQLImpl(){
-        try {
-            this.connection = DataBaseDao.getInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super ("ArtStyles");
     }
 
     @Override
-    public ArtStyle getById(int id) {
-
-        String query = "SELECT * FROM ArtStyles WHERE id = ?";
-
-        try{
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            stmt.setInt(1, id);
-
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()){ // result set is iterator.
-                ArtStyle item = new ArtStyle();
-                item.setId(rs.getInt("id"));
-                item.setName(rs.getString("name"));
-                item.setYear(rs.getString("year"));
-                rs.close();
-                return item;
-            }
-        } catch (SQLException e){
-            e.printStackTrace(); // poor error handling
-        }
-
-        return null;
-    }
-
-
-    @Override
-    public ArtStyle add(ArtStyle item) {
-
-        String insert = "INSERT INTO ArtStyles(name, year) VALUES(?, ?)";
-
+    public ArtStyle row2object(ResultSet rs) throws ArtGalleryException {
         try {
-            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, item.getName());
-            stmt.setString(2, item.getYear());
-            stmt.executeUpdate();
-
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next();
-            item.setId(rs.getInt(1));
-            return item;
+            ArtStyle cat = new ArtStyle();
+            cat.setId(rs.getInt("id"));
+            cat.setName(rs.getString("name"));
+            cat.setYear(rs.getString("year"));
+            return cat;
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return item;
-    }
-
-    @Override
-    public ArtStyle update(ArtStyle item) {
-        String insert = "UPDATE ArtStyles SET name = ?, year = ? WHERE id = ?";
-
-        try{
-            PreparedStatement stmt = this.connection.prepareStatement(insert);
-            stmt.setObject(1, item.getName());
-            stmt.setObject(2, item.getYear());
-            stmt.setObject(3, item.getId());
-            stmt.executeUpdate();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        return item;
-    }
-
-    @Override
-    public void delete(int id) {
-        String insert = "DELETE FROM ArtStyles WHERE id = ?";
-        try{
-            PreparedStatement stmt = this.connection.prepareStatement(insert);
-            stmt.setObject(1, id);
-            stmt.executeUpdate();
-        }catch (SQLException e){
-            e.printStackTrace();
+            throw new ArtGalleryException(e.getMessage(), e);
         }
     }
 
     @Override
-    public List<ArtStyle> getAll() {
-        String query = "SELECT * FROM ArtStyles";
-        List<ArtStyle> artStyles = new ArrayList<>();
-
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                ArtStyle item = new ArtStyle();
-                item.setId(rs.getInt("id"));
-                item.setName(rs.getString("name"));
-                item.setYear(rs.getString("year"));
-                artStyles.add(item);
-            }
-            rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace(); // poor error handling
-        }
-
-        return artStyles;
+    public Map<String, Object> object2row(ArtStyle object) {
+        Map<String, Object> row = new TreeMap<>();
+        row.put("id", object.getId());
+        row.put("name", object.getName());
+        row.put("year", object.getYear());
+        return row;
     }
 }
