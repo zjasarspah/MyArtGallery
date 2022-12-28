@@ -2,6 +2,8 @@ package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.ArtStyle;
 import ba.unsa.etf.rpr.domain.Artist;
+import ba.unsa.etf.rpr.exceptions.ArtGalleryException;
+
 import java.util.List;
 
 /**
@@ -17,6 +19,6 @@ public interface ArtistDao extends Dao<Artist> {
      * @return list of artists
      */
 
-    List<Artist> searchByArtStyle(ArtStyle movement);
+    List<Artist> searchByArtStyle(ArtStyle movement) throws ArtGalleryException;
 
 }
