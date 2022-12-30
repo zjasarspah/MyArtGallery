@@ -9,6 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class ArtWorkDaoSQLImpl extends AbstractDao<ArtWork> implements ArtWorkDao {
 
@@ -34,7 +35,12 @@ public class ArtWorkDaoSQLImpl extends AbstractDao<ArtWork> implements ArtWorkDa
 
     @Override
     public Map<String, Object> object2row(ArtWork object) {
-        return null;
+        Map<String, Object> row = new TreeMap<>();
+        row.put("id", object.getId());
+        row.put("name", object.getName());
+        row.put("id_artist", object.getArtist().getId());
+        row.put("id_artstyle", object.getMovement().getId());
+        return row;
     }
 
     @Override
