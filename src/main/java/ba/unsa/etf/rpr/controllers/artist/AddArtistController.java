@@ -3,15 +3,11 @@ package ba.unsa.etf.rpr.controllers.artist;
 import ba.unsa.etf.rpr.business.ArtistManager;
 import ba.unsa.etf.rpr.domain.Artist;
 import ba.unsa.etf.rpr.exceptions.ArtGalleryException;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -27,22 +23,41 @@ public class AddArtistController {
     @FXML
     public Button btnAdd;
     @FXML
-    public TextField txtfieldName;
+    public TextField txtFieldName;
 
     @FXML
-    public TextField txtfieldLifespan;
+    public TextField txtFieldLifespan;
 
-    private ArtistManager manager = new ArtistManager();
+    @FXML
+    public Button btnCancel;
+
+    private final ArtistManager manager = new ArtistManager();
     @FXML
     void initialize() {
-
     }
-    public void btnActionAdd(ActionEvent actionEvent) throws ArtGalleryException, IOException {
-        try {
+
+    public void btnActionAdd() throws ArtGalleryException {
         Artist a = new Artist();
-        a.setName(txtfieldName.getText());
-        a.setLifespan(txtfieldLifespan.getText());
+        a.setName(txtFieldName.getText());
+        a.setLifespan(txtFieldLifespan.getText());
         manager.add(a);
+        try {
+            callWindow();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public void btnActionCancel () {
+            try {
+                callWindow();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    private void callWindow () throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
@@ -51,9 +66,5 @@ public class AddArtistController {
         stage.setTitle("My Art Gallery");
         stage.show();
         ((Stage)addArtistPane.getScene().getWindow()).hide();
-        } catch (IOException e) {
-            System.out.println("Something went wrong with opening new ArtistSearch window!");
-            throw new RuntimeException(e);
-        }
     }
 }
