@@ -37,9 +37,14 @@ public class Artist implements Idable{
         this.lifespan = lifespan;
     }
 
+
     @Override
     public String toString() {
-        return name;
+        return "Artist{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lifespan='" + lifespan + '\'' +
+                '}';
     }
 
     @Override
