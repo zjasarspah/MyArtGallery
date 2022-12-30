@@ -17,7 +17,7 @@ public class DaoFactory {
         return artistDao;
     }
 
-    public static ArtWorkDao artWorkDaoDao(){
+    public static ArtWorkDao artWorkDao(){
         return artWorkDao;
     }
 
