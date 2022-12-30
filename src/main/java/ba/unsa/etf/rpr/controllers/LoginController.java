@@ -13,6 +13,7 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class LoginController {
 
+    @FXML
     public Button btnLogin;
     @FXML
     public GridPane loginGridPane;
@@ -30,9 +31,9 @@ public class LoginController {
             stage.setTitle("My Art Gallery");
             stage.show();
             ((Stage)loginGridPane.getScene().getWindow()).hide();
-            stage.setOnHiding(event -> {
+            /*stage.setOnHiding(event -> {
                 ((Stage)loginGridPane.getScene().getWindow()).show();
-            });
+            });*/
         } catch (IOException e) {
             System.out.println("Something went wrong with opening new ArtistSearch window!");
             throw new RuntimeException(e);
