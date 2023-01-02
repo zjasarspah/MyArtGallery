@@ -19,4 +19,6 @@ public interface Manager <T> {
     void update(T item) throws ArtGalleryException;
 
     T add(T item) throws ArtGalleryException;
+
+    List<T> searchByName (String name) throws ArtGalleryException;
 }
