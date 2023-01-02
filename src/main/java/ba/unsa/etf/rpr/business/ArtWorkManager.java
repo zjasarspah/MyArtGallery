@@ -17,16 +17,6 @@ import java.util.TreeSet;
  */
 public class ArtWorkManager implements Manager<ArtWork> {
 
-    public void validateArtWork(ArtWork aw) throws ArtGalleryException{
-        if (aw.getName() == null || aw.getName().length() > 45 || aw.getName().length() < 3){
-            throw new ArtGalleryException("Artwork's name must be between 3 and 45 chars long.");
-        } else if (aw.getArtist() == null) {
-            throw new ArtGalleryException("You forget to fill out information about Artist.");
-        } else if (aw.getMovement() == null) {
-            throw new ArtGalleryException("You forget to fill out information about Art Style.");
-        }
-    }
-
     public List<ArtWork> getAll() throws ArtGalleryException {
         return DaoFactory.artWorkDao().getAll();
     }
@@ -54,11 +44,11 @@ public class ArtWorkManager implements Manager<ArtWork> {
         return DaoFactory.artWorkDao().searchByName(name);
     }
 
-    public List<ArtWork> searchByArtStyle(ArtStyle movement) throws ArtGalleryException {
+    private List<ArtWork> searchByArtStyle(ArtStyle movement) throws ArtGalleryException {
         return DaoFactory.artWorkDao().searchByArtStyle(movement);
     }
 
-    public List<ArtWork> searchByArtist(Artist artist) throws ArtGalleryException {
+    private List<ArtWork> searchByArtist(Artist artist) throws ArtGalleryException {
         return DaoFactory.artWorkDao().searchByArtist(artist);
     }
 
@@ -75,6 +65,16 @@ public class ArtWorkManager implements Manager<ArtWork> {
         }
 
         return new ArrayList<>(set);
+    }
+
+    private void validateArtWork(ArtWork aw) throws ArtGalleryException{
+        if (aw.getName() == null || aw.getName().length() > 45 || aw.getName().length() < 3){
+            throw new ArtGalleryException("Artwork's name must be between 3 and 45 chars long.");
+        } else if (aw.getArtist() == null) {
+            throw new ArtGalleryException("You forget to fill out information about Artist.");
+        } else if (aw.getMovement() == null) {
+            throw new ArtGalleryException("You forget to fill out information about Art Style.");
+        }
     }
 
     private void isExist(ArtWork artwork) throws ArtGalleryException {

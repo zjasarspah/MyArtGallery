@@ -13,14 +13,6 @@ import java.util.List;
  */
 public class ArtStyleManager implements Manager<ArtStyle> {
 
-    public void validateArtStyle(ArtStyle as) throws ArtGalleryException{
-        if (as.getName() == null || as.getName().length() > 45 || as.getName().length() < 3){
-            throw new ArtGalleryException("Art Style's name must be between 3 and 45 chars long.");
-        } else if (!isDurationCorrect(as.getYear())) {
-            throw new ArtGalleryException("Duration of the art style isn't correct.");
-        }
-    }
-
     public List<ArtStyle> getAll() throws ArtGalleryException {
         return DaoFactory.artStyleDao().getAll();
     }
@@ -61,6 +53,13 @@ public class ArtStyleManager implements Manager<ArtStyle> {
             if (as.equals(artStyle)) {
                 throw new ArtGalleryException("This art style already exists.");
             }
+        }
+    }
+    private void validateArtStyle(ArtStyle as) throws ArtGalleryException{
+        if (as.getName() == null || as.getName().length() > 45 || as.getName().length() < 3){
+            throw new ArtGalleryException("Art Style's name must be between 3 and 45 chars long.");
+        } else if (!isDurationCorrect(as.getYear())) {
+            throw new ArtGalleryException("Duration of the art style isn't correct.");
         }
     }
 

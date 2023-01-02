@@ -12,14 +12,6 @@ import java.util.List;
  */
 public class ArtistManager implements Manager<Artist> {
 
-    public void validateArtist(Artist a) throws ArtGalleryException{
-        if (a.getName() == null || a.getName().length() > 45 || a.getName().length() < 3){
-            throw new ArtGalleryException("Artist's name must be between 3 and 45 chars long.");
-        } else if (!isLifeSpanCorrect(a.getLifespan())) {
-            throw new ArtGalleryException("Lifespan of the artist isn't correct.");
-        }
-    }
-
     public List<Artist> getAll() throws ArtGalleryException {
         return DaoFactory.artistDao().getAll();
     }
@@ -59,6 +51,14 @@ public class ArtistManager implements Manager<Artist> {
             if (a.equals(artist)) {
                 throw new ArtGalleryException("This artist already exists.");
             }
+        }
+    }
+
+    private void validateArtist(Artist a) throws ArtGalleryException{
+        if (a.getName() == null || a.getName().length() > 45 || a.getName().length() < 3){
+            throw new ArtGalleryException("Artist's name must be between 3 and 45 chars long.");
+        } else if (!isLifeSpanCorrect(a.getLifespan())) {
+            throw new ArtGalleryException("Lifespan of the artist isn't correct.");
         }
     }
 
