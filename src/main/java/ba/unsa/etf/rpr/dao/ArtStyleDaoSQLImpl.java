@@ -13,20 +13,30 @@ import java.util.TreeMap;
 
 public class ArtStyleDaoSQLImpl extends AbstractDao<ArtStyle> implements ArtStyleDao {
 
-    private Connection connection;
+    private static  ArtStyleDaoSQLImpl instance = null;
 
-    public ArtStyleDaoSQLImpl(){
+    private ArtStyleDaoSQLImpl(){
         super ("ArtStyles");
+    }
+
+    public static ArtStyleDaoSQLImpl getInstance(){
+        if(instance==null)
+            instance = new ArtStyleDaoSQLImpl();
+        return instance;
+    }
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
     }
 
     @Override
     public ArtStyle row2object(ResultSet rs) throws ArtGalleryException {
         try {
-            ArtStyle cat = new ArtStyle();
-            cat.setId(rs.getInt("id"));
-            cat.setName(rs.getString("name"));
-            cat.setDuration(rs.getString("duration"));
-            return cat;
+            ArtStyle as = new ArtStyle();
+            as.setId(rs.getInt("id"));
+            as.setName(rs.getString("name"));
+            as.setDuration(rs.getString("duration"));
+            return as;
         } catch (SQLException e) {
             throw new ArtGalleryException(e.getMessage(), e);
         }
