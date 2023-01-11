@@ -9,15 +9,15 @@ import java.util.Objects;
 
 public class ArtStyle implements Idable{
 
-    private int id;
+    private Integer id;
     private String name;
-    private String year;
+    private String duration;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -29,26 +29,22 @@ public class ArtStyle implements Idable{
         this.name = name;
     }
 
-    public String getYear() {
-        return year;
+    public String getDuration() {
+        return duration;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, year);
+        return Objects.hash(id, name, duration);
     }
 
     @Override
     public String toString() {
-        return "ArtStyle{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", year='" + year + '\'' +
-                '}';
+        return name + " (" + duration + ")";
     }
 
     @Override
@@ -56,6 +52,6 @@ public class ArtStyle implements Idable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ArtStyle artStyle = (ArtStyle) o;
-        return id == artStyle.id && Objects.equals(name, artStyle.name) && Objects.equals(year, artStyle.year);
+        return Objects.equals(name, artStyle.name);
     }
 }
