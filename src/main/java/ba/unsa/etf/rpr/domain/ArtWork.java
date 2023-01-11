@@ -6,7 +6,6 @@ import java.util.Objects;
  * List of possible artworks in art gallery
  * @author Zerina Jasarspahic
  */
-
 public class ArtWork implements Idable {
     private Integer id;
     private ArtStyle artStyle;
