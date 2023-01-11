@@ -19,11 +19,15 @@ import javafx.scene.layout.GridPane;
         */
 
 public class ArtistController extends Controller {
+    @FXML
     public GridPane artistPane;
+    @FXML
     public TextField txtFieldName;
+    @FXML
     public TextField txtFieldLifespan;
-
+    @FXML
     public Button btnAdd;
+    @FXML
     public Button btnCancel;
     private final ArtistModel model = new ArtistModel();
     private final ArtistManager manager = new ArtistManager();
@@ -40,14 +44,13 @@ public class ArtistController extends Controller {
             if (getId() != null) {
                 model.fromArtist(manager.getById(getId()));
             }
-        }catch (ArtGalleryException e){
+        } catch (ArtGalleryException e){
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
-
     }
 
     public void btnActionAdd(ActionEvent actionEvent) {
-        try{
+        try {
             Artist q = model.toArtist();
             if (getId() != null){
                 q.setId(getId());
@@ -56,7 +59,7 @@ public class ArtistController extends Controller {
                 manager.add(q);
             }
             artistPane.getScene().getWindow().hide();
-        }catch (ArtGalleryException e){
+        } catch (ArtGalleryException e){
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
