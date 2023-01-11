@@ -13,19 +13,28 @@ import java.util.TreeMap;
 
 public class ArtistDaoSQLImpl extends AbstractDao<Artist> implements ArtistDao {
 
-    private Connection connection;
-    public ArtistDaoSQLImpl() {
+    private static  ArtistDaoSQLImpl instance = null;
+    private ArtistDaoSQLImpl() {
         super("Artists");
+    }
+
+    public static ArtistDaoSQLImpl getInstance(){
+        if(instance==null)
+            instance = new ArtistDaoSQLImpl();
+        return instance;
+    }
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
     }
 
     @Override
     public Artist row2object(ResultSet rs) throws ArtGalleryException {
         try {
-            Artist cat = new Artist();
-            cat.setId(rs.getInt("id"));
-            cat.setName(rs.getString("name"));
-            cat.setLifespan(rs.getString("lifespan"));
-            return cat;
+            Artist a = new Artist();
+            a.setName(rs.getString("name"));
+            a.setLifespan(rs.getString("lifespan"));
+            return a;
         } catch (SQLException e) {
             throw new ArtGalleryException(e.getMessage(), e);
         }
