@@ -16,21 +16,31 @@ import java.util.TreeMap;
 
 public class ArtWorkDaoSQLImpl extends AbstractDao<ArtWork> implements ArtWorkDao {
 
-    public static Connection connection;
+    private static  ArtWorkDaoSQLImpl instance = null;
 
-    public ArtWorkDaoSQLImpl() {
+    private ArtWorkDaoSQLImpl() {
         super("Artworks");
+    }
+
+    public static ArtWorkDaoSQLImpl getInstance(){
+        if(instance==null)
+            instance = new ArtWorkDaoSQLImpl();
+        return instance;
+    }
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
     }
 
     @Override
     public ArtWork row2object(ResultSet rs) throws ArtGalleryException {
         try {
-            ArtWork q = new ArtWork();
-            q.setId(rs.getInt("id"));
-            q.setName(rs.getString("name"));
-            q.setArtist(DaoFactory.artistDao().getById(rs.getInt("id_artist")));
-            q.setArtStyle(DaoFactory.artStyleDao().getById(rs.getInt("id_artstyle")));
-            return q;
+            ArtWork aw = new ArtWork();
+            aw.setId(rs.getInt("id"));
+            aw.setName(rs.getString("name"));
+            aw.setArtist(DaoFactory.artistDao().getById(rs.getInt("id_artist")));
+            aw.setArtStyle(DaoFactory.artStyleDao().getById(rs.getInt("id_artstyle")));
+            return aw;
         } catch (Exception e) {
             throw new ArtGalleryException(e.getMessage(), e);
         }
