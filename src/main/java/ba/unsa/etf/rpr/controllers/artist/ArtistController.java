@@ -13,6 +13,11 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
+/***
+        * Controller for Add and Edit window - Artist
+        * @author Zerina Jasarspahic
+        */
+
 public class ArtistController extends Controller {
     public GridPane artistPane;
     public TextField txtFieldName;
