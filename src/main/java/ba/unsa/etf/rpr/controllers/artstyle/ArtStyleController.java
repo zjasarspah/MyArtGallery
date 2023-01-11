@@ -39,7 +39,7 @@ public class ArtStyleController extends Controller {
     public void initialize() {
         try{
             txtFieldName.textProperty().bindBidirectional(model.name);
-            txtFieldDuration.textProperty().bindBidirectional(model.year);
+            txtFieldDuration.textProperty().bindBidirectional(model.duration);
             if (getId() != null) {
                 model.fromArtStyle(manager.getById(getId()));
             }
