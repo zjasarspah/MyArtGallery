@@ -1,15 +1,24 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.EmployeeManager;
+import ba.unsa.etf.rpr.domain.Employee;
+import ba.unsa.etf.rpr.exceptions.ArtGalleryException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
+
+/**
+ * Controller for login
+ * @author Zerina Jasarspahic
+ */
 
 public class LoginController {
 
@@ -18,25 +27,36 @@ public class LoginController {
     @FXML
     public GridPane loginGridPane;
     @FXML
-    void initialize() {
+    public TextField txtFieldUsername;
+    @FXML
+    public TextField txtFieldPassword;
+    public void btnActionLogin(ActionEvent actionEvent) throws ArtGalleryException {
+        Employee e = new Employee();
+        e.setUsername(txtFieldUsername.getText());
+        e.setPassword(txtFieldPassword.getText());
+        if ((new EmployeeManager()).isValid(e)) {
+            openMainWindow(loginGridPane);
+        } else throw new ArtGalleryException("Username or password isn't correct.");
     }
 
-    public void btnActionLogin(ActionEvent actionEvent) {
+    /**
+     * Private method for opening main window
+     * @author Zerina Jasarspahic
+     */
+    private static void openMainWindow (GridPane gridPane) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/fxml/main.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.setResizable(true);
+            stage.setResizable(false);
             stage.setTitle("My Art Gallery");
             stage.show();
-            ((Stage)loginGridPane.getScene().getWindow()).hide();
-            /*stage.setOnHiding(event -> {
-                ((Stage)loginGridPane.getScene().getWindow()).show();
-            });*/
+            gridPane.getScene().getWindow().hide();
         } catch (IOException e) {
             System.out.println("Something went wrong with opening new ArtistSearch window!");
             throw new RuntimeException(e);
         }
+
     }
 }
