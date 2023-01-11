@@ -8,26 +8,25 @@ import java.util.Objects;
  */
 
 public class ArtWork implements Idable {
-
-    private int id;
-    private ArtStyle movement;
+    private Integer id;
+    private ArtStyle artStyle;
     private Artist artist;
     private String name;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public ArtStyle getMovement() {
-        return movement;
+    public ArtStyle getArtStyle() {
+        return artStyle;
     }
 
-    public void setMovement(ArtStyle movement) {
-        this.movement = movement;
+    public void setArtStyle(ArtStyle artStyle) {
+        this.artStyle = artStyle;
     }
 
     public Artist getArtist() {
@@ -48,12 +47,7 @@ public class ArtWork implements Idable {
 
     @Override
     public String toString() {
-        return "ArtWork{" +
-                "id=" + id +
-                ", movement=" + movement +
-                ", artist=" + artist +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
 
     @Override
@@ -61,11 +55,11 @@ public class ArtWork implements Idable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ArtWork artWork = (ArtWork) o;
-        return id == artWork.id &&  Objects.equals(movement, artWork.movement) && Objects.equals(artist, artWork.artist) && Objects.equals(name, artWork.name);
+        return Objects.equals(artStyle, artWork.artStyle) && Objects.equals(artist, artWork.artist) && Objects.equals(name, artWork.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, movement, artist, name);
+        return Objects.hash(id, artStyle, artist, name);
     }
 }
