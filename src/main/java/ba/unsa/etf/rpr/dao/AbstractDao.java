@@ -12,7 +12,7 @@ import java.util.*;
 public abstract class AbstractDao<T extends Idable> implements Dao<T>{
 
     private static Connection connection = null;
-    private String tableName;
+    final private String tableName;
 
     public AbstractDao(String tableName) {
         this.tableName = tableName;
@@ -34,7 +34,6 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
             }
         }
     }
-
     public Connection getConnection(){
         return AbstractDao.connection;
     }
@@ -70,7 +69,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
      */
     public abstract Map<String, Object> object2row(T object);
 
-    public T getById(int id) throws ArtGalleryException {
+    public T getById(Integer id) throws ArtGalleryException {
         return executeQueryUnique("SELECT * FROM " + this.tableName + " WHERE id = ?", new Object[]{id});
     }
 
@@ -78,7 +77,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         return executeQuery("SELECT * FROM "+ this.tableName, null);
     }
 
-    public void delete(int id) throws ArtGalleryException {
+    public void delete(Integer id) throws ArtGalleryException {
 
         String sql = "DELETE FROM " + this.tableName + " WHERE id = ?";
         try{
@@ -91,11 +90,6 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     }
 
     public T add(T item) throws ArtGalleryException{
-        for (T object : getAll()) {
-            if (object.equals(item)) {
-                throw new ArtGalleryException("The given object already exists in the base.");
-            }
-        }
 
         Map<String, Object> row = object2row(item);
         Map.Entry<String, String> columns = prepareInsertParts(row);
@@ -152,6 +146,10 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         }
     }
 
+    public List<T> searchByName(String itemName) throws ArtGalleryException {
+        return executeQuery("SELECT * FROM " + this.tableName + " WHERE name LIKE concat('%', ?, '%')", new Object[]{itemName});
+    }
+
     /**
      * Utility method for executing any kind of query
      * @param query - SQL query
@@ -203,7 +201,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         StringBuilder questions = new StringBuilder();
 
         int counter = 0;
-        for (Map.Entry<String, Object> entry: row.entrySet()) {
+        for (Map.Entry<String, Object> entry:row.entrySet()) {
             counter++;
             if (entry.getKey().equals("id")) continue; //skip insertion of id due autoincrement
             columns.append(entry.getKey());
