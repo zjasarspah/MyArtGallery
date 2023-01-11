@@ -16,7 +16,7 @@ public interface Dao<T> {
      * @param id primary key of entity
      * @return Entity from database
      */
-    T getById(int id) throws ArtGalleryException;
+    T getById(Integer id) throws ArtGalleryException;
 
     /**
      * Saves entity into database
@@ -36,11 +36,17 @@ public interface Dao<T> {
      * Hard delete of item from database with given id
      * @param id - primary key of entity
      */
-    void delete(int id) throws ArtGalleryException;
+    void delete(Integer id) throws ArtGalleryException;
 
     /**
      * Lists all entities from database. WARNING: Very slow operation because it reads all records.
      * @return List of entities from database
      */
     List<T> getAll() throws ArtGalleryException;
+
+    /**
+     * Lists all entities by name from database
+     * @return List of entities from database
+     */
+    List<T> searchByName(String name) throws ArtGalleryException;
 }
