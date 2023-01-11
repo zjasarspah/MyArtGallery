@@ -16,11 +16,11 @@ public interface ArtWorkDao extends Dao<ArtWork> {
 
     /**
      * Returns all artworks that belong to given art style
-     * @param movement search movement
+     * @param artStyle search art style
      * @return list of artworks
      */
 
-    List<ArtWork> searchByArtStyle(ArtStyle movement) throws ArtGalleryException;
+    List<ArtWork> searchByArtStyle(ArtStyle artStyle) throws ArtGalleryException;
 
     /**
      * Returns all artworks that belong to given artist
@@ -29,4 +29,5 @@ public interface ArtWorkDao extends Dao<ArtWork> {
      */
 
     List<ArtWork> searchByArtist(Artist artist) throws ArtGalleryException;
+
 }
