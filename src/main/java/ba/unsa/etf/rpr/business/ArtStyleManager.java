@@ -58,7 +58,7 @@ public class ArtStyleManager implements Manager<ArtStyle> {
     private void validateArtStyle(ArtStyle as) throws ArtGalleryException{
         if (as.getName() == null || as.getName().length() > 45 || as.getName().length() < 3){
             throw new ArtGalleryException("Art Style's name must be between 3 and 45 chars long.");
-        } else if (!isDurationCorrect(as.getYear())) {
+        } else if (!isDurationCorrect(as.getDuration())) {
             throw new ArtGalleryException("Duration of the art style isn't correct.");
         }
     }
