@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -30,13 +32,19 @@ public class LoginController {
     public TextField txtFieldUsername;
     @FXML
     public TextField txtFieldPassword;
-    public void btnActionLogin(ActionEvent actionEvent) throws ArtGalleryException {
+    public void btnActionLogin(ActionEvent actionEvent){
+        try {
         Employee e = new Employee();
         e.setUsername(txtFieldUsername.getText());
         e.setPassword(txtFieldPassword.getText());
         if ((new EmployeeManager()).isValid(e)) {
             openMainWindow(loginGridPane);
-        } else throw new ArtGalleryException("Username or password isn't correct.");
+        } else {
+            throw new ArtGalleryException("Username or password isn't correct.");
+         }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 
     /**
