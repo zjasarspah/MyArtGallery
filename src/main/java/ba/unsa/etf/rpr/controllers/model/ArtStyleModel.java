@@ -10,7 +10,7 @@ import javafx.beans.property.SimpleStringProperty;
 public class ArtStyleModel {
 
     public SimpleStringProperty name = new SimpleStringProperty("");
-    public SimpleStringProperty  year = new SimpleStringProperty("");
+    public SimpleStringProperty  duration = new SimpleStringProperty("");
 
     /**
      * Public method for parsing Art Style's fields into Properties
@@ -18,7 +18,7 @@ public class ArtStyleModel {
      */
     public void fromArtStyle (ArtStyle a){
         this.name.set(a.getName());
-        this.year.set(a.getYear());
+        this.duration.set(a.getDuration());
     }
 
     /**
@@ -28,7 +28,7 @@ public class ArtStyleModel {
     public ArtStyle toArtStyle(){
         ArtStyle a = new ArtStyle();
         a.setName(this.name.getValue());
-        a.setYear(this.year.getValue());
+        a.setDuration(this.duration.getValue());
         return a;
     }
 }
