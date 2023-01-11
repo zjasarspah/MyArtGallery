@@ -8,6 +8,7 @@ import javafx.util.Callback;
 
 /**
  * Triple button cell factory for creation of buttons for each cell in the table
+ * @author Zerina Jasarspahic
  * @param <T>
  */
 public class TripleButtonCellFactory<T> implements Callback<TableColumn<T, T>, TableCell<T, T>> {
@@ -17,7 +18,6 @@ public class TripleButtonCellFactory<T> implements Callback<TableColumn<T, T>, T
     private final EventHandler<ActionEvent> buttonThree;
 
     /**
-     *
      * @param buttonOne - event handler for first button (View)
      * @param buttonTwo - event handler for second button (Edit)
      * @param buttonThree - event handler for third button (Delete)
