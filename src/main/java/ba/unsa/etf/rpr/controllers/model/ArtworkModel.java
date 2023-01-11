@@ -26,7 +26,7 @@ public class ArtworkModel {
     public void fromArtwork (ArtWork aw){
         this.name.set(aw.getName());
         this.artist.set(aw.getArtist());
-        this.artStyle.set(aw.getMovement());
+        this.artStyle.set(aw.getArtStyle());
     }
 
     /**
@@ -38,7 +38,7 @@ public class ArtworkModel {
     public void viewFromArtwork (ArtWork aw){
         this.name.set(aw.getName());
         this.artistName.set(aw.getArtist().getName());
-        this.artStyleName.set(aw.getMovement().getName());
+        this.artStyleName.set(aw.getArtStyle().getName());
     }
 
     /**
@@ -49,7 +49,7 @@ public class ArtworkModel {
         ArtWork aw = new ArtWork();
         aw.setName(this.name.getValue());
         aw.setArtist(this.artist.getValue());
-        aw.setMovement(this.artStyle.getValue());
+        aw.setArtStyle(this.artStyle.getValue());
         return aw;
     }
 }
