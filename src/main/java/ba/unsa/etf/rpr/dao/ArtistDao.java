@@ -10,15 +10,5 @@ import java.util.List;
  * Dao interface for Artist domain bean
  * @author Zerina Jasarspahic
  */
-
 public interface ArtistDao extends Dao<Artist> {
-
-    /**
-     * Returns all artists that belong to given art style
-     * @param movement search movement
-     * @return list of artists
-     */
-
-    List<Artist> searchByArtStyle(ArtStyle movement) throws ArtGalleryException;
-
 }
