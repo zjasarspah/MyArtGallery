@@ -31,16 +31,13 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
-                Runtime.getRuntime().addShutdownHook(new Thread(){
-                    @Override
-                    public void run(){
-                        try {
-                            connection.close();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
+                Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                    try {
+                        connection.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
-                });
+                }));
             }
         }
     }
@@ -48,9 +45,9 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         return AbstractDao.connection;
     }
 
-    /**
-     * For singleton pattern, we have only one connection on the database which will be closed automatically when our program ends
-     * But if we want to close connection manually, then we will call this method which should be called from finally block
+    /*
+      For singleton pattern, we have only one connection on the database which will be closed automatically when our program ends
+      But if we want to close connection manually, then we will call this method which should be called from finally block
      */
 
     /**
