@@ -6,13 +6,13 @@ package ba.unsa.etf.rpr.dao;
  */
 public class DaoFactory {
 
-    private static final ArtistDao artistDao = new ArtistDaoSQLImpl();
-    private static final ArtWorkDao artWorkDao = new ArtWorkDaoSQLImpl();
-    private static final ArtStyleDao artStyleDao = new ArtStyleDaoSQLImpl();
+    private static final ArtistDao artistDao =  ArtistDaoSQLImpl.getInstance();
+    private static final ArtWorkDao artWorkDao = ArtWorkDaoSQLImpl.getInstance();
+    private static final ArtStyleDao artStyleDao = ArtStyleDaoSQLImpl.getInstance();
+    private static final EmployeeDao employeeDao = EmployeeDaoSQLImpl.getInstance();
 
     private DaoFactory(){
     }
-
     public static ArtistDao artistDao(){
         return artistDao;
     }
@@ -23,6 +23,10 @@ public class DaoFactory {
 
     public static ArtStyleDao artStyleDao(){
         return artStyleDao;
+    }
+
+    public static EmployeeDao employeeDao(){
+        return employeeDao;
     }
 
 }
