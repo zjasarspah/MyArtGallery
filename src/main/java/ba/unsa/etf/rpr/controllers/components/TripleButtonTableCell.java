@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 
 /**
  * Custom component for rendering table cell with three buttons (View, Edit and Delete)
+ * @author Zerina Jasarspahic
  * @param <T> - Bean class represented in the table cells
  */
 public class TripleButtonTableCell<T> extends TableCell<T, T> {
