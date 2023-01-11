@@ -36,7 +36,7 @@ public class ViewArtStyleController extends Controller {
     public void initialize() {
         try{
             labelName.textProperty().bindBidirectional(model.name);
-            labelDuration.textProperty().bindBidirectional(model.year);
+            labelDuration.textProperty().bindBidirectional(model.duration);
             if (getId() != null) {
                 model.fromArtStyle(artWorkManager.getById(getId()));
             }
