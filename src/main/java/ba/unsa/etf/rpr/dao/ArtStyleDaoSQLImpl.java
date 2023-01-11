@@ -6,6 +6,11 @@ import java.sql.*;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * MySQL Implementation of ArtStyleDao
+ * @author Zerina Jasarspahic
+ */
+
 public class ArtStyleDaoSQLImpl extends AbstractDao<ArtStyle> implements ArtStyleDao {
 
     private Connection connection;
