@@ -13,9 +13,9 @@ import javafx.scene.layout.HBox;
  */
 public class TripleButtonTableCell<T> extends TableCell<T, T> {
 
-    private Button view;
-    private Button edit;
-    private Button delete;
+    final private Button view;
+    final private Button edit;
+    final private Button delete;
 
     /**
      * Default constructor
