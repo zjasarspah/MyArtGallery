@@ -7,16 +7,13 @@ package ba.unsa.etf.rpr.controllers;
  */
 
 public abstract class Controller {
-
     private Integer id;
     public Controller (Integer id) {
         this.id = id;
     }
-
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
