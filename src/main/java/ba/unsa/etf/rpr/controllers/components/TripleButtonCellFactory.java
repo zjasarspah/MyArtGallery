@@ -29,8 +29,6 @@ public class TripleButtonCellFactory<T> implements Callback<TableColumn<T, T>, T
     }
 
     @Override
-    //vracam celiju u kojoj su napravljena dugmad, kao parametar se salje kolona u kojoj je potrebno napraviti celiju
-    //sa odredenim eventima, u ovom slucaju dugmadima
     public TableCell<T, T> call(TableColumn<T, T> objectTableColumn) {
         return new TripleButtonTableCell<>(buttonOne, buttonTwo, buttonThree);
     }
