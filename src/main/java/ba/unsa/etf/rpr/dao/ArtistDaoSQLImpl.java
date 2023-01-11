@@ -1,19 +1,19 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.domain.ArtStyle;
 import ba.unsa.etf.rpr.domain.Artist;
 import ba.unsa.etf.rpr.exceptions.ArtGalleryException;
-
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+/**
+ * MySQL Implementation of ArtistDao
+ * @author Zerina Jasarspahic
+ */
 
 public class ArtistDaoSQLImpl extends AbstractDao<Artist> implements ArtistDao {
 
     private Connection connection;
-
     public ArtistDaoSQLImpl() {
         super("Artists");
     }
@@ -39,11 +39,4 @@ public class ArtistDaoSQLImpl extends AbstractDao<Artist> implements ArtistDao {
         row.put("lifespan", object.getLifespan());
         return row;
     }
-
-    @Override
-    public List<Artist> searchByArtStyle(ArtStyle movement) {
-        return null;
-    }
-
-
 }
