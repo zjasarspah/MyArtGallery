@@ -2,10 +2,7 @@ package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.ArtStyle;
 import ba.unsa.etf.rpr.exceptions.ArtGalleryException;
-
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -23,7 +20,7 @@ public class ArtStyleDaoSQLImpl extends AbstractDao<ArtStyle> implements ArtStyl
             ArtStyle cat = new ArtStyle();
             cat.setId(rs.getInt("id"));
             cat.setName(rs.getString("name"));
-            cat.setYear(rs.getString("year"));
+            cat.setDuration(rs.getString("duration"));
             return cat;
         } catch (SQLException e) {
             throw new ArtGalleryException(e.getMessage(), e);
@@ -35,7 +32,7 @@ public class ArtStyleDaoSQLImpl extends AbstractDao<ArtStyle> implements ArtStyl
         Map<String, Object> row = new TreeMap<>();
         row.put("id", object.getId());
         row.put("name", object.getName());
-        row.put("year", object.getYear());
+        row.put("duration", object.getDuration());
         return row;
     }
 }
