@@ -72,7 +72,7 @@ public class ArtWorkManager implements Manager<ArtWork> {
             throw new ArtGalleryException("Artwork's name must be between 3 and 45 chars long.");
         } else if (aw.getArtist() == null) {
             throw new ArtGalleryException("You forget to fill out information about Artist.");
-        } else if (aw.getMovement() == null) {
+        } else if (aw.getArtStyle() == null) {
             throw new ArtGalleryException("You forget to fill out information about Art Style.");
         }
     }
