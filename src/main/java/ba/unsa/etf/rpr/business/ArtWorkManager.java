@@ -21,11 +21,11 @@ public class ArtWorkManager implements Manager<ArtWork> {
         return DaoFactory.artWorkDao().getAll();
     }
 
-    public void delete(int id) throws ArtGalleryException {
+    public void delete(Integer id) throws ArtGalleryException {
         DaoFactory.artWorkDao().delete(id);
     }
 
-    public ArtWork getById(int id) throws ArtGalleryException {
+    public ArtWork getById(Integer id) throws ArtGalleryException {
         return DaoFactory.artWorkDao().getById(id);
     }
 
