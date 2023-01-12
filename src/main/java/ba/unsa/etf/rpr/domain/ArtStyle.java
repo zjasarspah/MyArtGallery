@@ -13,6 +13,13 @@ public class ArtStyle implements Idable{
     private String name;
     private String duration;
 
+    public ArtStyle(String name, String duration) {
+        this.name = name;
+        this.duration = duration;
+    }
+
+    public ArtStyle() {}
+
     public Integer getId() {
         return id;
     }
