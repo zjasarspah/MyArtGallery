@@ -13,6 +13,13 @@ public class Employee implements Idable {
     private String username;
     private String password;
 
+    public Employee (String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Employee () {}
+
     @Override
     public void setId(Integer id) {
         this.id = id;
