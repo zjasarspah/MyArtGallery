@@ -35,7 +35,7 @@ class ArtworkManagerTest {
     }
 
     /**
-     * In this method it will be tested validateArtistName for correct and incorrect name of the artist
+     * In this method it will be tested validateArtworkName for correct and incorrect name of the artwork
      */
     @Test
     void validateArtworkName() throws ArtGalleryException {
@@ -67,6 +67,18 @@ class ArtworkManagerTest {
         Mockito.doCallRealMethod().when(artworkManager).validateArtWork(incorrectArtist);
         ArtGalleryException asException3 = Assertions.assertThrows(ArtGalleryException.class, () -> artworkManager.validateArtWork(incorrectArtist), "You forget to fill out information about Artist.");
         Assertions.assertEquals("You forget to fill out information about Artist.", asException3.getMessage());
+    }
+
+    /**
+     * In this method it will be tested validateArtStyle if artist field is equal to null
+     */
+    @Test
+    void validateArtStyle() throws ArtGalleryException{
+
+        ArtWork incorrectArtStyle = new ArtWork("The Persistence of Memory", new Artist("Salvador Dali","1904-1989"), null );
+        Mockito.doCallRealMethod().when(artworkManager).validateArtWork(incorrectArtStyle);
+        ArtGalleryException asException3 = Assertions.assertThrows(ArtGalleryException.class, () -> artworkManager.validateArtWork(incorrectArtStyle), "You forget to fill out information about Art Style.");
+        Assertions.assertEquals("You forget to fill out information about Art Style.", asException3.getMessage());
     }
 
     /**
