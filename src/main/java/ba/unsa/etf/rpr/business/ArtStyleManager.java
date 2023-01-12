@@ -17,7 +17,7 @@ public class ArtStyleManager implements Manager<ArtStyle> {
         return DaoFactory.artStyleDao().getAll();
     }
 
-    public void delete(int id) throws ArtGalleryException {
+    public void delete(Integer id) throws ArtGalleryException {
         try{
             DaoFactory.artStyleDao().delete(id);
         }catch (ArtGalleryException e){
@@ -28,7 +28,7 @@ public class ArtStyleManager implements Manager<ArtStyle> {
         }
     }
 
-    public ArtStyle getById(int id) throws ArtGalleryException {
+    public ArtStyle getById(Integer id) throws ArtGalleryException {
         return DaoFactory.artStyleDao().getById(id);
     }
 
@@ -55,7 +55,7 @@ public class ArtStyleManager implements Manager<ArtStyle> {
             }
         }
     }
-    private void validateArtStyle(ArtStyle as) throws ArtGalleryException{
+    public void validateArtStyle(ArtStyle as) throws ArtGalleryException{
         if (as.getName() == null || as.getName().length() > 45 || as.getName().length() < 3){
             throw new ArtGalleryException("Art Style's name must be between 3 and 45 chars long.");
         } else if (!isDurationCorrect(as.getDuration())) {
