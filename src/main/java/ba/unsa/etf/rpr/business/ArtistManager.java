@@ -16,7 +16,7 @@ public class ArtistManager implements Manager<Artist> {
         return DaoFactory.artistDao().getAll();
     }
 
-    public void delete(int id) throws ArtGalleryException {
+    public void delete(Integer id) throws ArtGalleryException {
         try{
             DaoFactory.artistDao().delete(id);
         } catch (ArtGalleryException e){
@@ -27,7 +27,7 @@ public class ArtistManager implements Manager<Artist> {
         }
     }
 
-    public Artist getById(int id) throws ArtGalleryException {
+    public Artist getById(Integer id) throws ArtGalleryException {
         return DaoFactory.artistDao().getById(id);
     }
 
@@ -54,7 +54,7 @@ public class ArtistManager implements Manager<Artist> {
         }
     }
 
-    private void validateArtist(Artist a) throws ArtGalleryException{
+    public void validateArtist(Artist a) throws ArtGalleryException{
         if (a.getName() == null || a.getName().length() > 45 || a.getName().length() < 3){
             throw new ArtGalleryException("Artist's name must be between 3 and 45 chars long.");
         } else if (!isLifeSpanCorrect(a.getLifespan())) {
