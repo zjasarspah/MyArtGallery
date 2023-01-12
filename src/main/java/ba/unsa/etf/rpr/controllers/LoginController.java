@@ -2,7 +2,6 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.EmployeeManager;
 import ba.unsa.etf.rpr.domain.Employee;
-import ba.unsa.etf.rpr.exceptions.ArtGalleryException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,11 +36,7 @@ public class LoginController {
         Employee e = new Employee();
         e.setUsername(txtFieldUsername.getText());
         e.setPassword(txtFieldPassword.getText());
-        if ((new EmployeeManager()).isValid(e)) {
-            openMainWindow(loginGridPane);
-        } else {
-            throw new ArtGalleryException("Username or password isn't correct.");
-         }
+        (new EmployeeManager()).isValid(e);
         } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
