@@ -14,14 +14,14 @@ public class EmployeeManager {
     public List<Employee> getAll() throws ArtGalleryException {
         return DaoFactory.employeeDao().getAll();
     }
-    public boolean isValid (Employee employee) throws ArtGalleryException {
+    public void isValid (Employee employee) throws ArtGalleryException {
         for (Employee e : getAll()) {
             if (e.equals(employee)) {
-                return true;
+                return;
             }
         }
 
-        return false;
+        throw new ArtGalleryException("The username or the password isn't correct.");
     }
 
 }
