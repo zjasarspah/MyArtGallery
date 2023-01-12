@@ -67,7 +67,7 @@ public class ArtWorkManager implements Manager<ArtWork> {
         return new ArrayList<>(set);
     }
 
-    private void validateArtWork(ArtWork aw) throws ArtGalleryException{
+    public void validateArtWork(ArtWork aw) throws ArtGalleryException{
         if (aw.getName() == null || aw.getName().length() > 45 || aw.getName().length() < 3){
             throw new ArtGalleryException("Artwork's name must be between 3 and 45 chars long.");
         } else if (aw.getArtist() == null) {
