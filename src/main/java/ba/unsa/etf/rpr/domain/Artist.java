@@ -12,6 +12,13 @@ public class Artist implements Idable{
     private String name;
     private String lifespan;
 
+    public Artist(String name, String lifespan) {
+        this.name = name;
+        this.lifespan = lifespan;
+    }
+
+    public Artist() {}
+
     public Integer getId() {
         return id;
     }
