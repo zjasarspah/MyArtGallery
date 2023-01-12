@@ -12,6 +12,14 @@ public class ArtWork implements Idable {
     private Artist artist;
     private String name;
 
+    public ArtWork(String name, Artist artist, ArtStyle artStyle) {
+        this.name = name;
+        this.artStyle = artStyle;
+        this.artist = artist;
+    }
+
+    public ArtWork() {}
+
     public Integer getId() {
         return id;
     }
