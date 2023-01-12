@@ -12,9 +12,9 @@ import java.util.List;
 public interface Manager <T> {
     List<T> getAll() throws ArtGalleryException;
 
-    void delete(int id) throws ArtGalleryException;
+    void delete(Integer id) throws ArtGalleryException;
 
-    T getById(int id) throws ArtGalleryException;
+    T getById(Integer id) throws ArtGalleryException;
 
     void update(T item) throws ArtGalleryException;
 
