@@ -59,6 +59,8 @@ public class ArtistManager implements Manager<Artist> {
             throw new ArtGalleryException("Artist's name must be between 3 and 45 chars long.");
         } else if (!isLifeSpanCorrect(a.getLifespan())) {
             throw new ArtGalleryException("Lifespan of the artist isn't correct.");
+        } else if (a.getNationality().length() > 20) {
+            throw new ArtGalleryException("Artist's nationality must be less than 20 chars long.");
         }
     }
 
