@@ -12,59 +12,64 @@
 <?import javafx.scene.text.Text?>
 
 <GridPane fx:id="loginGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.LoginController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="354.20001220703125" minWidth="10.0" prefWidth="295.19996337890626" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.7999877929687" minWidth="10.0" prefWidth="305.6000366210937" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="169.6000183105469" minHeight="10.0" prefHeight="169.6000183105469" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="128.60001220703126" minHeight="0.0" prefHeight="49.00000610351563" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="266.80000000000007" minHeight="7.399984741210915" prefHeight="49.59998168945313" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="266.80000000000007" minHeight="10.0" prefHeight="45.00001831054689" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="266.80000000000007" minHeight="10.0" prefHeight="108.19998168945312" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <Text fill="#c4508c" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="308.62713623046875" GridPane.columnSpan="2">
-         <font>
-            <Font name="Constantia Bold" size="46.0" />
-         </font>
-         <GridPane.margin>
-            <Insets bottom="10.0" left="150.0" right="150.0" top="35.0" />
-         </GridPane.margin>
-      </Text>
-      <Label text="Your username" textFill="#c4508c" GridPane.rowIndex="1">
-         <font>
-            <Font size="17.0" />
-         </font>
-         <padding>
-            <Insets left="100.0" />
-         </padding>
-      </Label>
-      <Label text="Your password" textFill="#c4508c" GridPane.rowIndex="2">
-         <font>
-            <Font size="17.0" />
-         </font>
-         <padding>
-            <Insets left="100.0" />
-         </padding>
-      </Label>
-      <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#btnActionLogin" prefHeight="49.0" prefWidth="299.0" text="LOG ME IN" textFill="#c4508c" GridPane.columnSpan="2" GridPane.rowIndex="4">
-         <GridPane.margin>
-            <Insets bottom="10.0" left="150.0" right="150.0" top="20.0" />
-         </GridPane.margin>
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Button>
-      <TextField fx:id="txtFieldUsername" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets right="40.0" />
-         </GridPane.margin>
-      </TextField>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="163.99998168945314" minHeight="10.0" prefHeight="142.40000610351564" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="95.60001220703126" minHeight="0.0" prefHeight="65.59999389648436" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="200.80000000000004" minHeight="0.0" prefHeight="60.00002136230469" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="200.80000000000004" minHeight="0.0" prefHeight="60.00002136230469" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="278.0" minHeight="10.0" prefHeight="133.5999786376953" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label text="Your Username" textFill="#c4508c" GridPane.rowIndex="1">
+            <padding>
+                <Insets left="100.0" />
+            </padding>
+            <font>
+                <Font name="Times New Roman" size="17.0" />
+            </font>
+        </Label>
+        <TextField fx:id="txtFieldUsername" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets right="40.0" />
+            </GridPane.margin>
+        </TextField>
+        <Label text="Your Password" textFill="#c4508c" GridPane.rowIndex="2">
+            <GridPane.margin>
+                <Insets left="100.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="Times New Roman" size="17.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#btnActionLogin" prefHeight="26.0" prefWidth="591.0" text="LOG IN" textFill="#c4508c" GridPane.columnSpan="2" GridPane.rowIndex="4">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="150.0" right="150.0" top="10.0" />
+            </GridPane.margin>
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Button>
+        <Text fill="#c4508c" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="315.8433303833008" GridPane.columnSpan="2">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="150.0" right="150.0" top="50.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="Constantia Bold" size="46.0" />
+            </font>
+        </Text>
+        <Button fx:id="btnPassword" mnemonicParsing="false" onAction="#btnActionPassword" prefHeight="26.0" prefWidth="280.0" text="Change password" textFill="#c4508c" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <GridPane.margin>
+                <Insets bottom="30.0" right="40.0" />
+            </GridPane.margin>
+        </Button>
       <PasswordField fx:id="txtFieldPassword" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets right="40.0" />
          </GridPane.margin>
       </PasswordField>
-   </children>
+    </children>
 </GridPane>
