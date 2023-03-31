@@ -17,11 +17,20 @@ public class EmployeeManager {
     public void isValid (Employee employee) throws ArtGalleryException {
         for (Employee e : getAll()) {
             if (e.equals(employee)) {
+                employee.setId(e.getId());
                 return;
             }
         }
 
         throw new ArtGalleryException("The username or the password isn't correct.");
+    }
+    public void update (Employee employee, String newPassword, String verifyPassword) throws ArtGalleryException {
+        isValid(employee);
+        if (newPassword.equals(verifyPassword)) {
+            employee.setPassword(newPassword);
+        } else throw new ArtGalleryException("The new password and verified password aren't same.");
+
+        DaoFactory.employeeDao().update(employee);
     }
 
 }
