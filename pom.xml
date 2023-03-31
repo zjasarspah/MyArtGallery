@@ -5,9 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ba.unsa.etf.rpr</groupId>
-  <artifactId>quote-maker</artifactId>
+  <artifactId>ArtGallery</artifactId>
   <version>0.1</version>
-  <name>quote-maker</name>
+  <name>ArtGallery</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
