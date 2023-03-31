@@ -11,10 +11,18 @@ public class Artist implements Idable{
     private Integer id;
     private String name;
     private String lifespan;
+    private String nationality;
 
     public Artist(String name, String lifespan) {
         this.name = name;
         this.lifespan = lifespan;
+        this.nationality = "No information";
+    }
+
+    public Artist(String name, String lifespan, String nationality) {
+        this.name = name;
+        this.lifespan = lifespan;
+        this.nationality = nationality;
     }
 
     public Artist() {}
@@ -43,6 +51,14 @@ public class Artist implements Idable{
         this.lifespan = lifespan;
     }
 
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
     @Override
     public String toString() {
         return name + " (" + lifespan + ")";
@@ -58,6 +74,6 @@ public class Artist implements Idable{
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name,  lifespan);
+        return Objects.hash(id, name,  lifespan, nationality);
     }
 }
