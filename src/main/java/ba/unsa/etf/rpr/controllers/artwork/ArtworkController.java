@@ -4,7 +4,7 @@ import ba.unsa.etf.rpr.business.ArtStyleManager;
 import ba.unsa.etf.rpr.business.ArtWorkManager;
 import ba.unsa.etf.rpr.business.ArtistManager;
 import ba.unsa.etf.rpr.controllers.Controller;
-import ba.unsa.etf.rpr.controllers.MainController;
+import ba.unsa.etf.rpr.controllers.MainEmployeeController;
 import ba.unsa.etf.rpr.controllers.artist.ArtistController;
 import ba.unsa.etf.rpr.controllers.artstyle.ArtStyleController;
 import ba.unsa.etf.rpr.domain.Artist;
@@ -104,7 +104,7 @@ public class ArtworkController extends Controller {
     private static void add(Controller controller, GridPane gridPane, String window, String title) {
         try{
             gridPane.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader(MainController.class.getResource(window));
+            FXMLLoader loader = new FXMLLoader(MainEmployeeController.class.getResource(window));
             loader.setController(controller);
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load(), Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE));
