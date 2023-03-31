@@ -26,6 +26,8 @@ public class ArtistController extends Controller {
     @FXML
     public TextField txtFieldLifespan;
     @FXML
+    public TextField txtFieldNationality;
+    @FXML
     public Button btnAdd;
     @FXML
     public Button btnCancel;
@@ -41,6 +43,7 @@ public class ArtistController extends Controller {
         try{
             txtFieldName.textProperty().bindBidirectional(model.name);
             txtFieldLifespan.textProperty().bindBidirectional(model.lifespan);
+            txtFieldNationality.textProperty().bindBidirectional(model.nationality);
             if (getId() != null) {
                 model.fromArtist(manager.getById(getId()));
             }
