@@ -35,6 +35,7 @@ public class ArtistDaoSQLImpl extends AbstractDao<Artist> implements ArtistDao {
             a.setId(rs.getInt("id"));
             a.setName(rs.getString("name"));
             a.setLifespan(rs.getString("lifespan"));
+            a.setNationality(rs.getString("nationality"));
             return a;
         } catch (SQLException e) {
             throw new ArtGalleryException(e.getMessage(), e);
@@ -47,6 +48,7 @@ public class ArtistDaoSQLImpl extends AbstractDao<Artist> implements ArtistDao {
         row.put("id", object.getId());
         row.put("name", object.getName());
         row.put("lifespan", object.getLifespan());
+        row.put("nationality", object.getNationality());
         return row;
     }
 }
