@@ -28,6 +28,8 @@ public class LoginController {
     @FXML
     public Button btnPassword;
     @FXML
+    public Button btnLoginGuest;
+    @FXML
     public GridPane loginGridPane;
     @FXML
     public TextField txtFieldUsername;
@@ -39,7 +41,7 @@ public class LoginController {
         e.setUsername(txtFieldUsername.getText());
         e.setPassword(txtFieldPassword.getText());
         (new EmployeeManager()).isValid(e);
-        openMainWindow(loginGridPane);
+        openMainWindow(loginGridPane,"/fxml/main.fxml");
         } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
@@ -66,9 +68,9 @@ public class LoginController {
      * Private method for opening main window
      * @author Zerina Jasarspahic
      */
-    private static void openMainWindow (GridPane gridPane) {
+    private static void openMainWindow (GridPane gridPane, String path) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/fxml/main.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource(path));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
@@ -80,5 +82,9 @@ public class LoginController {
             System.out.println("Something went wrong with opening new ArtistSearch window!");
             throw new RuntimeException(e);
         }
+    }
+
+    public void btnActionLoginGuest(ActionEvent actionEvent){
+        openMainWindow(loginGridPane,"/fxml/mainguest.fxml");
     }
 }
