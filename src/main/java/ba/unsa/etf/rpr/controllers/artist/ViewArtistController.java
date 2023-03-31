@@ -22,6 +22,8 @@ public class ViewArtistController extends Controller {
     @FXML
     public Label labelLifespan;
     @FXML
+    public Label labelNationality;
+    @FXML
     public Button btnOk;
     private final ArtistModel model = new ArtistModel();
     private final ArtistManager artistManager = new ArtistManager();
@@ -37,6 +39,7 @@ public class ViewArtistController extends Controller {
         try{
             labelName.textProperty().bindBidirectional(model.name);
             labelLifespan.textProperty().bindBidirectional(model.lifespan);
+            labelNationality.textProperty().bindBidirectional(model.nationality);
             if (getId() != null) {
                 model.fromArtist(artistManager.getById(getId()));
             }
