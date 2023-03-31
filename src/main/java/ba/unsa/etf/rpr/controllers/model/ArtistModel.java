@@ -12,6 +12,7 @@ public class ArtistModel {
 
     public SimpleStringProperty name = new SimpleStringProperty("");
     public SimpleStringProperty  lifespan = new SimpleStringProperty("");
+    public SimpleStringProperty  nationality = new SimpleStringProperty("");
 
     /**
      * Public method for parsing Artist's fields into Properties
@@ -20,6 +21,7 @@ public class ArtistModel {
     public void fromArtist(Artist a){
         this.name.set(a.getName());
         this.lifespan.set(a.getLifespan());
+        this.nationality.set(a.getNationality());
     }
 
     /**
@@ -28,9 +30,13 @@ public class ArtistModel {
      */
 
     public Artist toArtist(){
-        Artist a = new Artist();
-        a.setName(this.name.getValue());
-        a.setLifespan(this.lifespan.getValue());
+
+        if (this.nationality.getValue().equals("")) {
+            Artist a = new Artist(this.name.getValue(), this.lifespan.getValue());
+            return a;
+        }
+        Artist a = new Artist(this.name.getValue(), this.lifespan.getValue(), this.nationality.getValue());
+
         return a;
     }
 }
