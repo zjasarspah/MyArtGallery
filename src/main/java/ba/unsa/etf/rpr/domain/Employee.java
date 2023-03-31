@@ -46,9 +46,14 @@ public class Employee implements Idable {
         this.password = password;
     }
 
+
     @Override
     public String toString() {
-        return username;
+        return "Employee{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 
     @Override
