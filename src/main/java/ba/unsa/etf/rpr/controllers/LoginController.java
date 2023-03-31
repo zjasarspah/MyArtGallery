@@ -26,6 +26,8 @@ public class LoginController {
     @FXML
     public Button btnLogin;
     @FXML
+    public Button btnPassword;
+    @FXML
     public GridPane loginGridPane;
     @FXML
     public TextField txtFieldUsername;
@@ -37,8 +39,26 @@ public class LoginController {
         e.setUsername(txtFieldUsername.getText());
         e.setPassword(txtFieldPassword.getText());
         (new EmployeeManager()).isValid(e);
+        openMainWindow(loginGridPane);
         } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
+
+    public void btnActionPassword(ActionEvent actionEvent){
+        try {
+            loginGridPane.getScene().getWindow().hide();
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/fxml/changepassword.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setResizable(false);
+            stage.setTitle("Change Password");
+            stage.show();
+            stage.setOnHiding(event -> ((Stage)loginGridPane.getScene().getWindow()).show());
+        } catch (IOException e) {
+            System.out.println("Something went wrong with opening new ArtistSearch window!");
+            throw new RuntimeException(e);
         }
     }
 
@@ -60,6 +80,5 @@ public class LoginController {
             System.out.println("Something went wrong with opening new ArtistSearch window!");
             throw new RuntimeException(e);
         }
-
     }
 }
