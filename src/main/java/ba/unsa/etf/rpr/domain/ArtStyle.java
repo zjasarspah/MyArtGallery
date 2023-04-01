@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr.domain;
 import java.util.Objects;
 
 /**
- * List of possible art styles in art gallery
+ * Art Style is a Java Bean that represents an entity that exists in the Data Base
  * @author Zerina Jasarspahic
  */
 
