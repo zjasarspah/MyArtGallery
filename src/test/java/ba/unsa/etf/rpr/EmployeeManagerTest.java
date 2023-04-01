@@ -36,7 +36,7 @@ class EmployeeManagerTest {
     @Test
     void validateEmployee() {
         try {
-            Mockito.doCallRealMethod().when(employeeManager).isValid(employee);
+            Mockito.doCallRealMethod().when(employeeManager).validateEmployee(employee);
         } catch (ArtGalleryException e) {
             e.printStackTrace();
             Assertions.fail();
@@ -49,8 +49,8 @@ class EmployeeManagerTest {
     @Test
     void validateEmployeeUsername() throws ArtGalleryException {
         Employee incorrect = new Employee("Zer", "Zerina123");
-        Mockito.doCallRealMethod().when(employeeManager).isValid(incorrect);
-        ArtGalleryException asException1 = Assertions.assertThrows(ArtGalleryException.class, () -> employeeManager.isValid(incorrect), "The username or the password isn't correct.");
+        Mockito.doCallRealMethod().when(employeeManager).validateEmployee(incorrect);
+        ArtGalleryException asException1 = Assertions.assertThrows(ArtGalleryException.class, () -> employeeManager.validateEmployee(incorrect), "The username or the password isn't correct.");
         Assertions.assertEquals("The username or the password isn't correct.", asException1.getMessage());
     }
 
@@ -60,8 +60,8 @@ class EmployeeManagerTest {
     @Test
     void validateEmployeePassword() throws ArtGalleryException {
         Employee incorrect = new Employee("Zerina", "Zerina");
-        Mockito.doCallRealMethod().when(employeeManager).isValid(incorrect);
-        ArtGalleryException asException1 = Assertions.assertThrows(ArtGalleryException.class, () -> employeeManager.isValid(incorrect), "The username or the password isn't correct.");
+        Mockito.doCallRealMethod().when(employeeManager).validateEmployee(incorrect);
+        ArtGalleryException asException1 = Assertions.assertThrows(ArtGalleryException.class, () -> employeeManager.validateEmployee(incorrect), "The username or the password isn't correct.");
         Assertions.assertEquals("The username or the password isn't correct.", asException1.getMessage());
     }
 }
