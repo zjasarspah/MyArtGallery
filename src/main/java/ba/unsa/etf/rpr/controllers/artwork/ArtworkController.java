@@ -70,6 +70,10 @@ public class ArtworkController extends Controller {
         }
     }
 
+    /**
+     * Method for adding/editing artwork in the database
+     * @param actionEvent on add/edit button pressed
+     */
     public void btnActionAdd(ActionEvent actionEvent) {
         try{
             ArtWork q = model.toArtwork();
@@ -85,12 +89,17 @@ public class ArtworkController extends Controller {
         }
     }
 
+    /**
+     * Method that exits the current window without adding/editing an artist
+     * @param actionEvent exit button pressed
+     */
     public void btnActionCancel(ActionEvent actionEvent) {
         artworkPane.getScene().getWindow().hide();
     }
 
     /***
-     * Public method for adding Artist if he/she doesn't exist in the base
+     * Public method for adding Artist if she/he doesn't exist in the base
+     * @param actionEvent add artist button pressed
      */
     public void btnActionArtist (ActionEvent actionEvent) {
         add(new ArtistController(null), artworkPane, "/artist/addArtist.fxml", "Add Artist");
@@ -98,15 +107,23 @@ public class ArtworkController extends Controller {
 
     /***
      * Public method for adding Art Style if it doesn't exist in the base
+     * @param actionEvent add art style button pressed
      */
     public void btnActionArtStyle (ActionEvent actionEvent) {
         add(new ArtStyleController(null), artworkPane,"/artstyle/addArtStyle.fxml", "Add Art Style");
     }
 
-    private static void add(Controller controller, GridPane gridPane, String window, String title) {
+    /***
+     * Private method for opening new window
+     * @param title of the page
+     * @param path name of the fxml file
+     * @param gridPane previous view
+     * @param controller for new window
+     */
+    private static void add(Controller controller, GridPane gridPane, String path, String title) {
         try{
             gridPane.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader(MainEmployeeController.class.getResource(window));
+            FXMLLoader loader = new FXMLLoader(MainEmployeeController.class.getResource(path));
             loader.setController(controller);
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load(), Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE));
