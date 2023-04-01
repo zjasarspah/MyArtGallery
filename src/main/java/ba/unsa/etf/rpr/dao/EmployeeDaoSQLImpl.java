@@ -17,6 +17,10 @@ public class EmployeeDaoSQLImpl extends AbstractDao<Employee> implements Employe
         super("Employees");
     }
 
+    /**
+     * Implementation of factory model for singleton design pattern
+     * @return EmployeeDaoSqlImpl
+     */
     public static EmployeeDaoSQLImpl getInstance(){
         if(instance==null)
             instance = new EmployeeDaoSQLImpl();
