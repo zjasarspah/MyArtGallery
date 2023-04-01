@@ -25,9 +25,11 @@ public class ViewArtStyleController extends Controller {
     public Button btnOk;
     private final ArtStyleModel model = new ArtStyleModel();
     private final ArtStyleManager artWorkManager = new ArtStyleManager();
-    public ViewArtStyleController (Integer id){
-        super(id);
+
+    public ViewArtStyleController() {
+
     }
+
     public void btnActionOk (ActionEvent actionEvent) {
         artStylePane.getScene().getWindow().hide();
     }
