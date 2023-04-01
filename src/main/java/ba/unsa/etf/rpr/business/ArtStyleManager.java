@@ -48,6 +48,11 @@ public class ArtStyleManager implements Manager<ArtStyle> {
         return DaoFactory.artStyleDao().searchByName(name);
     }
 
+    /**
+     * Method for checking does the art style already exist in the database
+     * @param artStyle for checking
+     * @throws ArtGalleryException if art style already exist in the database
+     */
     private void isExist(ArtStyle artStyle) throws ArtGalleryException {
         for (ArtStyle as : getAll()) {
             if (as.equals(artStyle)) {
@@ -55,14 +60,25 @@ public class ArtStyleManager implements Manager<ArtStyle> {
             }
         }
     }
-    public void validateArtStyle(ArtStyle as) throws ArtGalleryException{
-        if (as.getName() == null || as.getName().length() > 45 || as.getName().length() < 3){
+
+    /**
+     * Method for checking are the information about the art style correct
+     * @param artStyle for checking
+     * @throws ArtGalleryException if art style isn't correct
+     */
+    public void validateArtStyle(ArtStyle artStyle) throws ArtGalleryException{
+        if (artStyle.getName() == null || artStyle.getName().length() > 45 || artStyle.getName().length() < 3){
             throw new ArtGalleryException("Art Style's name must be between 3 and 45 chars long.");
-        } else if (!isDurationCorrect(as.getDuration())) {
+        } else if (!isDurationCorrect(artStyle.getDuration())) {
             throw new ArtGalleryException("Duration of the art style isn't correct.");
         }
     }
 
+    /**
+     * Method for checking is the duration of the art style correct
+     * @param duration for checking
+     * @return boolean correct or not correct
+     */
     private boolean isDurationCorrect (String duration) {
         if (duration == null || duration.length() != 9 || duration.charAt(4) != '-') {
             return false;
