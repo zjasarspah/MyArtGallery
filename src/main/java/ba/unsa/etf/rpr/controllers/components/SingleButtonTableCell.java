@@ -8,7 +8,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.layout.HBox;
 
 /**
- * Custom component for rendering table cell with three buttons (View, Edit and Delete)
+ * Custom component for rendering table cell with one button (View)
  * @author Zerina Jasarspahic
  * @param <T> - Bean class represented in the table cells
  */
