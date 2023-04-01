@@ -18,9 +18,9 @@
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.39996337890625" minWidth="10.0" prefWidth="304.39996337890625" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="163.99998168945314" minHeight="10.0" prefHeight="105.80000610351561" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="96.99999389648437" minHeight="0.0" prefHeight="62.599999999999994" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="200.80000000000004" minHeight="0.0" prefHeight="46.00000610351563" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="163.99998168945314" minHeight="10.0" prefHeight="147.2000244140625" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="96.99999389648437" minHeight="0.0" prefHeight="24.79997558593749" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="200.80000000000004" minHeight="0.0" prefHeight="43.00000610351563" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="200.80000000000004" minHeight="0.0" prefHeight="50.199987792968756" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="278.0" minHeight="10.0" prefHeight="75.19998779296878" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="278.0" minHeight="0.0" prefHeight="52.80001220703127" vgrow="SOMETIMES" />
@@ -50,7 +50,7 @@
         </Label>
         <Text fill="#c4508c" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="315.8433303833008" GridPane.columnSpan="2">
             <GridPane.margin>
-                <Insets bottom="10.0" left="150.0" right="150.0" top="50.0" />
+                <Insets bottom="10.0" left="150.0" right="150.0" />
             </GridPane.margin>
             <font>
                 <Font name="Constantia Bold" size="46.0" />
