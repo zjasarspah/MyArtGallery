@@ -35,10 +35,6 @@ public class ViewArtworkController extends Controller {
 
     }
 
-    public void btnActionOk (ActionEvent actionEvent) {
-        artworkPane.getScene().getWindow().hide();
-    }
-
     @FXML
     public void initialize() {
         try{
@@ -51,5 +47,14 @@ public class ViewArtworkController extends Controller {
         } catch (ArtGalleryException e){
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
+    }
+
+
+    /**
+     * Method that exits the current window
+     * @param actionEvent exit button pressed
+     */
+    public void btnActionOk (ActionEvent actionEvent) {
+        artworkPane.getScene().getWindow().hide();
     }
 }
