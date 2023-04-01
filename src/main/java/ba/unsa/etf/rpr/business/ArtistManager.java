@@ -77,6 +77,6 @@ public class ArtistManager implements Manager<Artist> {
         }
 
         List<String> years = Arrays.asList(lifeSpan.split("-"));
-        return years.get(0).compareTo(years.get(1)) < 0 && Integer.parseInt(years.get(1)) - Integer.parseInt(years.get(0)) <= 100;
+        return years.get(0).compareTo(years.get(1)) < 0 && Integer.parseInt(years.get(1)) - Integer.parseInt(years.get(0)) <= 100 && Integer.parseInt(years.get(1)) - Integer.parseInt(years.get(0)) >= 15;
     }
 }
