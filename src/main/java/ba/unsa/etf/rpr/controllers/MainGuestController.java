@@ -3,27 +3,25 @@ package ba.unsa.etf.rpr.controllers;
 import ba.unsa.etf.rpr.business.ArtStyleManager;
 import ba.unsa.etf.rpr.business.ArtWorkManager;
 import ba.unsa.etf.rpr.business.ArtistManager;
-import ba.unsa.etf.rpr.business.Manager;
-import ba.unsa.etf.rpr.controllers.artist.ArtistController;
 import ba.unsa.etf.rpr.controllers.artist.ViewArtistController;
-import ba.unsa.etf.rpr.controllers.artstyle.ArtStyleController;
 import ba.unsa.etf.rpr.controllers.artstyle.ViewArtStyleController;
-import ba.unsa.etf.rpr.controllers.artwork.ArtworkController;
 import ba.unsa.etf.rpr.controllers.artwork.ViewArtworkController;
 import ba.unsa.etf.rpr.controllers.components.SingleButtonCellFactory;
-import ba.unsa.etf.rpr.controllers.components.TripleButtonCellFactory;
 import ba.unsa.etf.rpr.exceptions.ArtGalleryException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Region;
-import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
+/**
+ * Controller for main window if you are a guest
+ * Guests can only view the information about artworks, art styles and artists
+ * @author Zerina Jasarspahic
+ */
 public class MainGuestController {
 
     @FXML
@@ -72,37 +70,69 @@ public class MainGuestController {
     private ObservableList<Object> artworks;
 
     /**
+     * Public method for refresh button
+     * @param list of artists, artworks or art styles
+     * @param path for the view window
+     * @param title for the view window
+     * @param tableView table with artists, artworks or art styles
+     * @param controller for view window
+     * @param columns in the table with id, name and button for each artist, artwork or art style
+     */
+    private void refreshButton (ObservableList<Object> list, TableView<Object> tableView, Controller controller, ArrayList<TableColumn<Object, Object>> columns, String path, String title){
+        setColumns(columns.get(0), columns.get(1), columns.get(2));
+        setButtonsInColumns (controller,columns.get(2), tabScreen, path, title);
+        refresh(tableView, list);
+    }
+
+    /**
      * Public method for button that refreshes list of artworks
+     * @param actionEvent on refresh button pressed
      */
     public void btnActionRefreshArtworks(ActionEvent actionEvent) throws ArtGalleryException {
+        ArrayList<TableColumn<Object, Object>> columnArtWork = new ArrayList<TableColumn<Object, Object>>() {{
+            add(colArtworkId);
+            add(colArtworkName);
+            add(actionColumnArtwork);
+        }};
         artworks = FXCollections.observableArrayList(artWorkManager.getAll());
-        setColumns(colArtworkId, colArtworkName, actionColumnArtwork);
-        setButtonsInArtworkColumns (actionColumnArtwork, tabScreen, artWorkManager);
-        refresh(artworkTableView, artworks);
+        refreshButton(artworks,artworkTableView,new ViewArtworkController(),columnArtWork, "/artwork/viewArtwork.fxml",  "View Artwork");
     }
 
     /**
      * Public method for button that refreshes list of artists
+     * @param actionEvent on refresh button pressed
      */
     public void btnActionRefreshArtists(ActionEvent actionEvent) throws ArtGalleryException {
+        ArrayList<TableColumn<Object, Object>> columnArtist = new ArrayList<TableColumn<Object, Object>>() {{
+            add(colArtistId);
+            add(colArtistName);
+            add(actionColumnArtist);
+        }};
         artists = FXCollections.observableArrayList(artistManager.getAll());
-        setColumns(colArtistId, colArtistName, actionColumnArtist);
-        setButtonsInArtistColumns (actionColumnArtist, tabScreen, artistManager);
-        refresh(artistTableView, artists);
+        refreshButton(artists,artistTableView,new ViewArtistController(),columnArtist, "/artist/viewArtist.fxml", "View Artist");
     }
 
     /**
      * Public method for button that refresh list of art styles
+     * @param actionEvent on refresh button pressed
      */
     public void btnActionRefreshArtStyles(ActionEvent actionEvent) throws ArtGalleryException {
+        ArrayList<TableColumn<Object, Object>> columnArtStyle = new ArrayList<TableColumn<Object, Object>>() {{
+            add(colArtStyleId);
+            add(colArtStyleName);
+            add(actionColumnArtStyle);
+        }};
+
         artStyles = FXCollections.observableArrayList(artStyleManager.getAll());
-        setColumns(colArtStyleId, colArtStyleName, actionColumnArtStyle);
-        setButtonsInArtStyleColumns (actionColumnArtStyle, tabScreen, artStyleManager);
-        refresh(artStyleTableView, artStyles);
+        refreshButton(artStyles,artStyleTableView,new ViewArtStyleController(),columnArtStyle, "/artstyle/viewArtStyle.fxml",  "View ArtStyle");
     }
+
 
     /**
      * Private method for setting columns
+     * @param columnId id
+     * @param columnName name
+     * @param actionColumn buttons
      */
     private static void setColumns (TableColumn<Object, Object> columnId, TableColumn<Object, Object> columnName, TableColumn<Object, Object> actionColumn) {
         columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -120,87 +150,63 @@ public class MainGuestController {
 
     /**
      * Public method for text field that searches artwork by name, artist or art style
+     * @param event enter pressed for searching
      */
     public void txtFieldActionSearchArtworks(ActionEvent event) throws ArtGalleryException {
+        ArrayList<TableColumn<Object, Object>> columnArtWork = new ArrayList<TableColumn<Object, Object>>() {{
+            add(colArtworkId);
+            add(colArtworkName);
+            add(actionColumnArtwork);
+        }};
         String item = txtFieldSearchArtworks.getText();
         artworks = FXCollections.observableArrayList(artWorkManager.search(item));
-        setColumns(colArtworkId,colArtworkName,actionColumnArtwork);
-        setButtonsInArtStyleColumns (actionColumnArtwork, tabScreen, artWorkManager);
-        refresh(artworkTableView, artworks);
+        refreshButton(artworks,artworkTableView,new ViewArtworkController(),columnArtWork, "/artwork/viewArtwork.fxml",  "View Artwork");
     }
 
     /**
      * Public method for text field that searches artist by name
+     * @param event enter pressed for searching
      */
     public void txtFieldActionSearchArtist (ActionEvent event) throws ArtGalleryException {
+       ArrayList<TableColumn<Object, Object>> columnArtist = new ArrayList<TableColumn<Object, Object>>() {{
+            add(colArtistId);
+            add(colArtistName);
+            add(actionColumnArtist);
+        }};
         String search = txtFieldSearchArtist.getText();
         artists = FXCollections.observableArrayList(artistManager.searchByName(search));
-        setColumns(colArtistId, colArtistName, actionColumnArtist);
-        setButtonsInArtistColumns (actionColumnArtist, tabScreen, artistManager);
-        refresh(artistTableView, artists);
+        refreshButton(artists,artistTableView,new ViewArtistController(),columnArtist, "/artist/viewArtist.fxml", "View Artist");
     }
 
     /**
      * Public method for text field that searches art style by name
+     * @param event enter pressed for searching
      */
     public void txtFieldActionSearchArtStyle (ActionEvent event) throws ArtGalleryException {
+        ArrayList<TableColumn<Object, Object>> columnArtStyle = new ArrayList<TableColumn<Object, Object>>() {{
+            add(colArtStyleId);
+            add(colArtStyleName);
+            add(actionColumnArtStyle);
+        }};
         String search = txtFieldSearchArtStyle.getText();
         artStyles = FXCollections.observableArrayList(artStyleManager.searchByName(search));
-        setColumns(colArtStyleId, colArtStyleName, actionColumnArtStyle);
-        setButtonsInArtStyleColumns (actionColumnArtStyle, tabScreen, artStyleManager);
-        refresh(artStyleTableView, artStyles);
+        refreshButton(artStyles,artStyleTableView,new ViewArtStyleController(),columnArtStyle, "/artstyle/viewArtStyle.fxml",  "View ArtStyle");
     }
 
     /**
-     * Private method for setting buttons in columns for each art style
-     * View, Delete and Edit buttons
+     * Private method for setting buttons in columns
+     * Only View button
+     * @param controller for view window
+     * @param actionColumn in which column we want to set buttons
+     * @param path for view window
+     * @param title for view window
      */
-    private static void setButtonsInArtStyleColumns (TableColumn<Object, Object> actionColumn, TabPane tabScreen, Manager manager) {
-        actionColumn.setCellFactory(new SingleButtonCellFactory(viewEvent -> {
+    private static void setButtonsInColumns (Controller controller, TableColumn<Object, Object> actionColumn, TabPane tabScreen, String path, String title) {
+        actionColumn.setCellFactory(new SingleButtonCellFactory<>(viewEvent -> {
             int id = Integer.parseInt(((Button) viewEvent.getSource()).getUserData().toString());
-            editAddScene(new ViewArtStyleController(id), tabScreen, id, "/artstyle/viewArtStyle.fxml",  "View ArtStyle");
+            controller.setId(id);
+            (new OpenNewWindow()).openDialog(controller, tabScreen, path,  title);
         }));
     }
-
-    /**
-     * Private method for setting buttons in columns for each artist
-     * View, Delete and Edit buttons
-     */
-    private static void setButtonsInArtistColumns (TableColumn<Object, Object> actionColumn, TabPane tabScreen, Manager manager) {
-        actionColumn.setCellFactory(new SingleButtonCellFactory(viewEvent -> {
-            int id = Integer.parseInt(((Button) viewEvent.getSource()).getUserData().toString());
-            editAddScene(new ViewArtistController(id), tabScreen, id, "/artist/viewArtist.fxml",  "View Artist");
-        }));
-    }
-
-    /**
-     * Private method for setting buttons in columns for each artwork
-     * View, Delete and Edit buttons
-     */
-    private static void setButtonsInArtworkColumns (TableColumn<Object, Object> actionColumn, TabPane tabScreen, Manager manager) {
-        actionColumn.setCellFactory(new SingleButtonCellFactory(viewEvent -> {
-            int id = Integer.parseInt(((Button) viewEvent.getSource()).getUserData().toString());
-            editAddScene(new ViewArtworkController(id), tabScreen, id, "/artwork/viewArtwork.fxml",  "View Artwork");
-        }));
-    }
-
-    /**
-     * Private method for editing or adding artist, art style or artwork
-     */
-    private static void editAddScene(Controller controller, TabPane tabScreen, Integer id, String window, String title) {
-        try{
-            tabScreen.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader(MainEmployeeController.class.getResource(window));
-            loader.setController(controller);
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load(), Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE));
-            stage.setTitle(title);
-            stage.show();
-            stage.setOnHiding(event -> ((Stage)tabScreen.getScene().getWindow()).show());
-        }catch (Exception e){
-            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
-        }
-    }
-
 
 }
