@@ -41,14 +41,14 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
             }
         }
     }
+
+    /**
+     * Static method that returns the connection to the Data Base
+     * @return Connection to Data Base
+     */
     public Connection getConnection(){
         return AbstractDao.connection;
     }
-
-    /*
-      For singleton pattern, we have only one connection on the database which will be closed automatically when our program ends
-      But if we want to close connection manually, then we will call this method which should be called from finally block
-     */
 
     /**
      * Method for mapping ResultSet into Object
@@ -181,6 +181,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
      */
     public T executeQueryUnique(String query, Object[] params) throws ArtGalleryException{
         List<T> result = executeQuery(query, params);
+        /* Always one result in this case */
         if (result != null && result.size() == 1){
             return result.get(0);
         }else{
