@@ -35,6 +35,10 @@ public class ArtStyleController extends Controller {
         super(id);
     }
 
+    public ArtStyleController() {
+
+    }
+
     @FXML
     public void initialize() {
         try{
