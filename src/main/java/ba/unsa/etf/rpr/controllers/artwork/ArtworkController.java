@@ -52,6 +52,8 @@ public class ArtworkController extends Controller {
         super(id);
     }
 
+    public ArtworkController() {
+    }
     @FXML
     public void initialize() {
         try{
