@@ -12,6 +12,7 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
  * @author Zerina Jasarspahic
  */
 public class AppFX extends Application {
+
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/artgallerylogin.fxml"));
