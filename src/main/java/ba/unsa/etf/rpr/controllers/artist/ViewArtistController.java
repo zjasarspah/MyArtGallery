@@ -27,9 +27,10 @@ public class ViewArtistController extends Controller {
     public Button btnOk;
     private final ArtistModel model = new ArtistModel();
     private final ArtistManager artistManager = new ArtistManager();
-    public ViewArtistController (Integer id){
-        super(id);
+
+    public ViewArtistController() {
     }
+
     public void btnActionOk (ActionEvent actionEvent) {
         artistPane.getScene().getWindow().hide();
     }
