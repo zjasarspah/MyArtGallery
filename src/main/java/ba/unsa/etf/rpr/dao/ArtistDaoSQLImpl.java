@@ -18,6 +18,10 @@ public class ArtistDaoSQLImpl extends AbstractDao<Artist> implements ArtistDao {
         super("Artists");
     }
 
+    /**
+     * Implementation of factory model for singleton design pattern
+     * @return ArtistDaoSqlImpl
+     */
     public static ArtistDaoSQLImpl getInstance(){
         if(instance==null)
             instance = new ArtistDaoSQLImpl();
