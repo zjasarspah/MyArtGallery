@@ -7,7 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
 
 /**
- * Triple button cell factory for creation of buttons for each cell in the table
+ * Single button cell factory for creation of View button for each cell in the table
  * @author Zerina Jasarspahic
  * @param <T>
  */
