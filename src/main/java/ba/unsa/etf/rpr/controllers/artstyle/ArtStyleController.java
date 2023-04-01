@@ -52,6 +52,10 @@ public class ArtStyleController extends Controller {
         }
     }
 
+    /**
+     * Method for adding/editing art style in the database
+     * @param actionEvent on add/edit button pressed
+     */
     public void btnActionAdd(ActionEvent actionEvent) {
         try{
             ArtStyle q = model.toArtStyle();
@@ -67,6 +71,10 @@ public class ArtStyleController extends Controller {
         }
     }
 
+    /**
+     * Method that exits the current window without adding/editing an art style
+     * @param actionEvent exit button pressed
+     */
     public void btnActionCancel(ActionEvent actionEvent) {
         artStylePane.getScene().getWindow().hide();
     }
