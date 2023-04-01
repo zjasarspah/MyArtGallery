@@ -19,6 +19,10 @@ public class ArtStyleDaoSQLImpl extends AbstractDao<ArtStyle> implements ArtStyl
         super ("ArtStyles");
     }
 
+    /**
+     * Implementation of factory model for singleton design pattern
+     * @return ArtStyleDaoSqlImpl
+     */
     public static ArtStyleDaoSQLImpl getInstance(){
         if(instance==null)
             instance = new ArtStyleDaoSQLImpl();
