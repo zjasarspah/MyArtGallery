@@ -1,7 +1,7 @@
 package ba.unsa.etf.rpr.dao;
 
 /**
- * Factory method for singleton implementation of DAOs
+ * DaoFactory represents the implementation of Factory design pattern
  * @author Zerina Jasarspahic
  */
 public class DaoFactory {
@@ -13,18 +13,35 @@ public class DaoFactory {
 
     private DaoFactory(){
     }
+
+    /**
+     * Method that returns ArtistDao object
+     * @return ArtistDao
+     */
     public static ArtistDao artistDao(){
         return artistDao;
     }
 
+    /**
+     * Method that returns ArtWorkDao object
+     * @return ArtWorkDao
+     */
     public static ArtWorkDao artWorkDao(){
         return artWorkDao;
     }
 
+    /**
+     * Method that returns ArtStyleDao object
+     * @return ArtistDao
+     */
     public static ArtStyleDao artStyleDao(){
         return artStyleDao;
     }
 
+    /**
+     * Method that returns EmployeeDao object
+     * @return ArtistDao
+     */
     public static EmployeeDao employeeDao(){
         return employeeDao;
     }
