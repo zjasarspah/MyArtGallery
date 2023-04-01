@@ -59,7 +59,7 @@ public class LoginController {
             stage.show();
             stage.setOnHiding(event -> ((Stage)loginGridPane.getScene().getWindow()).show());
         } catch (IOException e) {
-            System.out.println("Something went wrong with opening new ArtistSearch window!");
+            System.out.println("Something went wrong!");
             throw new RuntimeException(e);
         }
     }
