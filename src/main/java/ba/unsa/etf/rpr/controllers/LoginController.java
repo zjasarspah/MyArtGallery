@@ -35,56 +35,62 @@ public class LoginController {
     public TextField txtFieldUsername;
     @FXML
     public TextField txtFieldPassword;
+
+    /**
+     * Method that verifies the given username and password of the employee
+     * Main window will open, if the username and the password are correct
+     * @param actionEvent on login button pressed
+     */
     public void btnActionLogin(ActionEvent actionEvent){
         try {
         Employee e = new Employee();
         e.setUsername(txtFieldUsername.getText());
         e.setPassword(txtFieldPassword.getText());
-        (new EmployeeManager()).isValid(e);
-        openMainWindow(loginGridPane,"/fxml/main.fxml");
+        (new EmployeeManager()).validateEmployee(e);
+            openNewWindow(loginGridPane,"/fxml/main.fxml", "My Art Gallery");
         } catch (Exception e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
 
+    /**
+     * Method that opens window for changing password of the employee
+     * @param actionEvent on login button pressed
+     */
     public void btnActionPassword(ActionEvent actionEvent){
-        try {
-            loginGridPane.getScene().getWindow().hide();
-            FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("/fxml/changepassword.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.setResizable(false);
-            stage.setTitle("Change Password");
-            stage.show();
-            stage.setOnHiding(event -> ((Stage)loginGridPane.getScene().getWindow()).show());
-        } catch (IOException e) {
-            System.out.println("Something went wrong!");
-            throw new RuntimeException(e);
-        }
+        openNewWindow(loginGridPane, "/fxml/changepassword.fxml", "Change Password");
     }
 
     /**
-     * Private method for opening main window
-     * @author Zerina Jasarspahic
+     * Method that opens main window, if you are not the employee of the art gallery
+     * @param actionEvent on login button pressed
      */
-    private static void openMainWindow (GridPane gridPane, String path) {
+    public void btnActionLoginGuest(ActionEvent actionEvent){
+        openNewWindow(loginGridPane,"/fxml/mainguest.fxml", "My Art Gallery");
+    }
+
+    /**
+     * Private method for opening new window
+     * @param title of the page
+     * @param path name of the fxml file
+     * @param pane previous view
+     */
+    private static void openNewWindow (GridPane pane, String path, String title) {
         try {
+            pane.getScene().getWindow().hide();
             FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource(path));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.setResizable(false);
-            stage.setTitle("My Art Gallery");
+            stage.setTitle(title);
             stage.show();
-            gridPane.getScene().getWindow().hide();
+            if (path.equals("/fxml/changepassword.fxml")) {
+                stage.setOnHiding(event -> ((Stage) pane.getScene().getWindow()).show());
+            }
         } catch (IOException e) {
             System.out.println("Something went wrong!");
             throw new RuntimeException(e);
         }
-    }
-
-    public void btnActionLoginGuest(ActionEvent actionEvent){
-        openMainWindow(loginGridPane,"/fxml/mainguest.fxml");
     }
 }
