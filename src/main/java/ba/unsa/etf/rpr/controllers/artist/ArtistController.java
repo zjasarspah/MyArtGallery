@@ -38,6 +38,10 @@ public class ArtistController extends Controller {
         super(editId);
     }
 
+    public ArtistController() {
+
+    }
+
     @FXML
     public void initialize() {
         try{
