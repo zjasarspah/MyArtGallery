@@ -30,8 +30,9 @@ public class ViewArtworkController extends Controller {
 
     private final ArtworkModel model = new ArtworkModel();
     private final ArtWorkManager artWorkManager = new ArtWorkManager();
-    public ViewArtworkController (Integer id){
-        super(id);
+
+    public ViewArtworkController() {
+
     }
 
     public void btnActionOk (ActionEvent actionEvent) {
