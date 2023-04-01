@@ -22,6 +22,10 @@ public class ArtWorkDaoSQLImpl extends AbstractDao<ArtWork> implements ArtWorkDa
         super("Artworks");
     }
 
+    /**
+     * Implementation of factory model for singleton design pattern
+     * @return ArtWorkDaoSqlImpl
+     */
     public static ArtWorkDaoSQLImpl getInstance(){
         if(instance==null)
             instance = new ArtWorkDaoSQLImpl();
