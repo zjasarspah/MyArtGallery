@@ -56,6 +56,10 @@ public class ArtistController extends Controller {
         }
     }
 
+    /**
+     * Method for adding/editing artist in the database
+     * @param actionEvent on add/edit button pressed
+     */
     public void btnActionAdd(ActionEvent actionEvent) {
         try {
             Artist q = model.toArtist();
@@ -71,6 +75,10 @@ public class ArtistController extends Controller {
         }
     }
 
+    /**
+     * Method that exits the current window without adding/editing an artist
+     * @param actionEvent exit button pressed
+     */
     public void btnActionCancel(ActionEvent actionEvent) {
         artistPane.getScene().getWindow().hide();
     }
